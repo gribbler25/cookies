@@ -1,1 +1,1 @@
-# MERN-SPA
+# MERN Subscription
