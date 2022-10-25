@@ -1,11 +1,14 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// import schema from Book.js  ( i don't think we do this, too many models?)
-// const bookSchema = require('./Book');
-
 const userSchema = new Schema(
   {
+    //don't know if I need to state this _id explicitly as ObjectId that others will reference
+    _id: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      unique: true,
+    },
     username: {
       type: String,
       required: true,
@@ -21,9 +24,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set reviews to be an array of data that adheres to the reviewSchema?
-    reviews: [reviewSchema],
-    orders: [orderSchema],
+    //reviews and orders included when user queries themselves for their dashboard page...?
+    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+    orders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
   },
   // set this to use virtual below
   {
@@ -48,6 +51,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const User = model("User", userSchema);
+const User = model("user", userSchema);
 
 module.exports = User;
