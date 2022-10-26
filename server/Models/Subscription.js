@@ -1,12 +1,12 @@
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
-const orderSchema = new Schema(
+const subscriptionSchema = new Schema(
   //push cookie names to cookiesIncluded Array as a part of ordering process from a list of options on order page?
   {
     savedCookies: [cookieSchema],
     //this is either small(12), medium(24), or large(36) order box monthly subscription, comes from selection dropdown
-    orderSize: {
+    boxSize: {
       type: String,
       required: true,
       enum: ["Small", "Medium", "Large"],
@@ -28,7 +28,7 @@ const orderSchema = new Schema(
       ref: "User",
     },
     //this comes from the price assoc with the 3 supbscription types and is stored as the number of cents, converted to decimal with get and set(below)
-    orderTotal: {
+    total: {
       type: Number,
       required: true,
       get: getPrice,
@@ -50,6 +50,6 @@ function setPrice(num) {
   return num * 100;
 }
 
-const Order = model("orders", orderSchema);
+const Subscription = model("subscriptions", subscriptionSchema);
 
-module.exports = Order;
+module.exports = Subscription;
