@@ -25,7 +25,7 @@ const subscriptionSchema = new Schema(
     },
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
     },
     //this comes from the price assoc with the 3 supbscription types and is stored as the number of cents, converted to decimal with get and set(below)
     total: {
