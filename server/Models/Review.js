@@ -6,12 +6,12 @@ const reviewSchema = new Schema(
     //name comes from the clicked cookie's name property
     cookieName: {
       type: Schema.Types.ObjectId,
-      ref: "cookies",
+      ref: "Cookie",
     },
     //comes from the logged in user's userName
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
       required: true,
       unique: true,
     },
@@ -21,7 +21,7 @@ const reviewSchema = new Schema(
       required: true,
       trim: true,
     },
-    created_at: {
+    createdAt: {
       type: Date,
       default: Date.now,
       get: (createdAtVal) => dateFormat(createdAtVal),

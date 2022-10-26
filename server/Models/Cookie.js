@@ -26,7 +26,7 @@ const cookieSchema = new Schema({
     type: Array,
   },
   //need all the reviews with this cookieType's _id
-  reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+  reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
 });
 
 const Cookie = model("cookies", cookieSchema);

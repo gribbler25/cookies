@@ -25,8 +25,8 @@ const userSchema = new Schema(
       required: true,
     },
     //reviews and orders included when user queries themselves for their dashboard page...?
-    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
-    orders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
+    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+    orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
   },
   // set this to use virtual below
   {
