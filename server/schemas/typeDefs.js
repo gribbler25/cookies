@@ -37,14 +37,21 @@ const typeDefs = gql`
     user: User
   }
   type Query {
-    me: User
-    cookie: Cookie
+    getmMe: User
+    getCookie: Cookie
+    getCookies: [Cookie]
   }
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addCookie(name: String!, description: String!, image: String!): Cookie
-    removeCookie(_id: ID!): Cookie
+    addCookie(cookieName: String!): Subscription
+    removeCookie(cookieName: String!): Subscription
+    createCookie(
+      cookieName: String
+      image: String
+      description: String
+      allergens: [String]
+    ): Cookie
     addSubscription(savedCookies: [String!], boxSize: String!): User
     deleteSubscription(_id: ID!): User
     addReview(cookieReviewed: String!, reviewText: String!): Cookie
