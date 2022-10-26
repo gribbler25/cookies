@@ -16,10 +16,15 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
+
+        cookie: async () => {
+
+        }
         // // get all users
         // // replaced thoughts with reviews and friends with cookies 
         // only query in typedefs is me
-
+        //is users and user needed?
+        
         // users: async () => {
         //     return User.find()
         //         .select('-__v -password')
