@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const cookieSchema = new Schema({
-  name: {
+  cookieName: {
     type: String,
     required: true,
     unique: true,
@@ -23,9 +23,9 @@ const cookieSchema = new Schema({
   },
   //we can just put Wheat, Dairy, Egg, Peanut, Soy, and Tree nut here as applicable when add cookie to DB
   allergens: {
-    type: Array,
+    type: String,
   },
-  //need all the reviews with this cookieType's _id
+  //need all the reviews with this cookieType's _id to (.populate) when cookie queried
   reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
 });
 

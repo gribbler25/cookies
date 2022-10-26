@@ -9,7 +9,7 @@ const userSchema = new Schema(
     //   required: true,
     //   unique: true,
     // },
-    username: {
+    userName: {
       type: String,
       required: true,
       unique: true,
@@ -24,9 +24,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    //reviews and orders included when user queries themselves for their dashboard page...?
+    //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
     reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
-    orders: [{ type: Schema.Types.ObjectId, ref: "orders" }],
+    subscription: { type: Schema.Types.ObjectId, ref: "subscriptions" },
   },
   // set this to use virtual below
   {
