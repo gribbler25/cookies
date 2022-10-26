@@ -4,17 +4,25 @@ const { User, Cookie, Subscription, Review } = require("../models");
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
+    getMe: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("reviews")
-          .populate("cookies");
+          .populate("subscriptions");
 
         return userData;
       }
 
       throw new AuthenticationError("Not logged in");
+    },
+    getCookie: async (parent, { cookieName }) => {
+      const cookie = await Cookie.findOne({ cookieName }); //cookieName needs to match the name clicked on ??
+      return cookie;
+    },
+    getCookies: async (parent) => {
+      const cookies = await Cookie.find({});
+      return cookies;
     },
     // // get all users
     // // replaced thoughts with reviews and friends with cookies
@@ -58,27 +66,36 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    removeCookie: async (parent, arg, context) => {
+    removeCookie: async (parent, { cookieName }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedSubscription = await Subscription.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedCookies: { cookieid: args.cookieId } } },
-          // { $pull: { savedCookies: { bookid: args.bookId } } },
+          { $pull: { savedCookies: { cookieName } } },
           { new: true }
         );
-        return updatedUser;
+        return updatedSubscription;
       }
     },
 
-    addCookie: async (parent, args, context) => {
+    addCookie: async (parent, { cookieName }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedSubscription = await Subscription.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: { savedCookies: args } },
+          { $push: { savedCookies: { cookieName } } },
           { new: true }
         );
-        return updatedUser;
+        return updatedSubscription;
       }
+    },
+    //this is to put cookies inthe DB!
+    createCookie: async (parent, args) => {
+      const newCookie = await Cookie.create({
+        cookieName: cookieName,
+        image: image,
+        description: description,
+        allergens: allergens,
+      });
+      return newCookie;
     },
   },
 };
