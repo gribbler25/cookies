@@ -7,11 +7,11 @@ const cookieSchema = new Schema({
     unique: true,
   },
   //cookie_id can reference both orders and reviews.. got this syntax from a Googlesearch
-  cookie_id: {
-    type: Schema.Types.ObjectId,
-    references: { type: [Schema.Types.ObjectId], refPath: "model_type" },
-    model_type: { type: String, enum: ["orders", "reviews"], required: true },
-  },
+  // cookie_id: {
+  //   type: Schema.Types.ObjectId,
+  //   references: { type: [Schema.Types.ObjectId], refPath: "model_type" },
+  //   model_type: { type: String, enum: ["orders", "reviews"], required: true },
+  // },
   image: {
     type: Image,
     unique: true,
@@ -25,7 +25,7 @@ const cookieSchema = new Schema({
   allergens: {
     type: Array,
   },
-  //need all the reviews with this cookieType's cookie_id..
+  //need all the reviews with this cookieType's _id
   reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
 });
 

@@ -4,11 +4,11 @@ const bcrypt = require("bcrypt");
 const userSchema = new Schema(
   {
     //don't know if I need to state this _id explicitly as ObjectId that others will reference
-    _id: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      unique: true,
-    },
+    // _id: {
+    //   type: Schema.Types.ObjectId,
+    //   required: true,
+    //   unique: true,
+    // },
     username: {
       type: String,
       required: true,
