@@ -1,6 +1,6 @@
 const User = require("./User");
 const Cookie = require("./Cookie");
-const Order = require("./Order");
+const Subscription = require("./Subscription");
 const Review = require("./Review");
 
-module.exports = { User, Cookie, Order, Review };
+module.exports = { User, Cookie, Subscription, Review };

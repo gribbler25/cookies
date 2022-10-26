@@ -3,17 +3,15 @@ const dateFormat = require("../utils/dateFormat");
 //this user input opportunity coming from the single cookie page so we already have the id of current cookie selected?
 const reviewSchema = new Schema(
   {
-    //name comes from the clicked cookie's name property
-    cookieName: {
+    //name comes from the clicked cookie's name property to (.populate) with review query?
+    cookieReviewed: {
       type: Schema.Types.ObjectId,
       ref: "Cookie",
     },
     //comes from the logged in user's userName
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-      unique: true,
+      ref: "user",
     },
     //input from a textbox
     reviewText: {
