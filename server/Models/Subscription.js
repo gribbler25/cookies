@@ -24,7 +24,7 @@ const subscriptionSchema = new Schema(
     },
     //this comes from the price assoc with the 3 supbscription types and is stored as the number of cents, converted to decimal with get and set(below)
     total: {
-      type: String,
+      type: Number,
       required: true,
       // get: getPrice,
       // set: setPrice,
