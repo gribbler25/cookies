@@ -21,7 +21,7 @@ const reviewSchema = new Schema(
     },
     createdAt: {
       type: String,
-      default: new Date.now().toISOString(),
+      default: () => new Date().toISOString(),
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
   },

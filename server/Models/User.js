@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const reviewSchema = require("./Review.js");
 
 
 const userSchema = new Schema(
@@ -26,7 +27,7 @@ const userSchema = new Schema(
       required: true,
     },
     //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
-    reviews: [reviewSchema],
+    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
     subscription: { type: Schema.Types.ObjectId, ref: "subscriptions" },
   },
   // set this to use virtual below
