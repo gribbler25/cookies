@@ -20,8 +20,8 @@ const reviewSchema = new Schema(
       trim: true,
     },
     createdAt: {
-      type: Date,
-      default: Date.now,
+      type: String,
+      default: new Date.now().toISOString(),
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
   },

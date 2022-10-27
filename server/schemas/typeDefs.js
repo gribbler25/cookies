@@ -30,7 +30,7 @@ const typeDefs = gql`
     boxSize: String!
     createdAt: String
     createdBy: String
-    total: Int
+    total: String
   }
   type Auth {
     token: ID!
