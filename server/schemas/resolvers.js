@@ -91,7 +91,6 @@ const resolvers = {
     createCookie: async (parent, args) => {
       const newCookie = await Cookie.create({
         cookieName: cookieName,
-        image: image,
         description: description,
         allergens: allergens,
       });
