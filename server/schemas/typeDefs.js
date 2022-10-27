@@ -41,6 +41,7 @@ const typeDefs = gql`
     getCookie: Cookie
     getCookies: [Cookie]
   }
+  
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth

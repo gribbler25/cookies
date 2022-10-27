@@ -23,7 +23,8 @@ const resolvers = {
     getCookies: async (parent) => {
       const cookies = await Cookie.find({});
       return cookies;
-    },
+    }
+},
     // // get all users
     // // replaced thoughts with reviews and friends with cookies
     // only query in typedefs is me
@@ -49,7 +50,7 @@ const resolvers = {
         // user: async (parent, { username }) => {
         //     return User.findOne({ username })
         //         .select('-__v -password')
-
+  
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -105,6 +106,6 @@ const resolvers = {
       return newCookie;
     },
   },
-}
+
 };
 module.exports = resolvers;
