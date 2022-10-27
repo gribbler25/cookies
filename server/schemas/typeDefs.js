@@ -5,7 +5,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type User {
     _id: ID
-    userName: String!
+    username: String!
     email: String!
     password: String!
     reviews: [Review]
@@ -14,7 +14,6 @@ const typeDefs = gql`
   type Cookie {
     _id: ID
     cookieName: String!
-    image: String
     description: String!
     allergens: [String]
     reviews: [Review]
@@ -48,7 +47,6 @@ const typeDefs = gql`
     removeCookie(cookieName: String!): Subscription
     createCookie(
       cookieName: String
-      image: String
       description: String
       allergens: [String]
     ): Cookie
