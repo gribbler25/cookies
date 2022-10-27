@@ -6,17 +6,11 @@ const cookieSchema = new Schema({
     required: true,
     unique: true,
   },
-  //cookie_id can reference both orders and reviews.. got this syntax from a Googlesearch
-  // cookie_id: {
-  //   type: Schema.Types.ObjectId,
-  //   references: { type: [Schema.Types.ObjectId], refPath: "model_type" },
-  //   model_type: { type: String, enum: ["orders", "reviews"], required: true },
-  // },
   //image will be a string that is the http link to the image like in Book-engine?
-  image: {
-    type: String,
-    unique: true,
-  },
+  // image: {
+  //   type: String,
+  //   unique: true,
+  // },
   description: {
     type: String,
     required: true,

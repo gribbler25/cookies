@@ -25,7 +25,7 @@ const userSchema = new Schema(
       required: true,
     },
     //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
-    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+    reviews: [reviewSchema],
     subscription: { type: Schema.Types.ObjectId, ref: "subscriptions" },
   },
   // set this to use virtual below

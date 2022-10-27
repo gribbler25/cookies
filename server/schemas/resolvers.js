@@ -1,25 +1,39 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { signToken } = require("../utils/auth");
+const { User, Cookie, Subscription, Review } = require("../models");
 
 const resolvers = {
+  Query: {
+    getMe: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("reviews")
+          .populate("subscriptions");
 
-    Query: {
-        me: async (parent, args, context) => {
-            if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                    .populate('reviews')
-                    .populate('cookies');
+        return userData;
+      }
 
-                return userData;
-            }
+      throw new AuthenticationError("Not logged in");
+    },
+    getCookie: async (parent, { cookieName }) => {
+      const cookie = await Cookie.findOne({ cookieName }); //cookieName needs to match the name clicked on ??
+      return cookie;
+    },
+    getCookies: async (parent) => {
+      const cookies = await Cookie.find({});
+      return cookies;
+    },
+    // // get all users
+    // // replaced thoughts with reviews and friends with cookies
+    // only query in typedefs is me
 
-            throw new AuthenticationError('Not logged in');
-        },
+        //     throw new AuthenticationError('Not logged in');
+        // },
 
-        cookie: async () => {
+        // cookie: async () => {
 
-        }
+        // }
         // // get all users
         // // replaced thoughts with reviews and friends with cookies 
         // only query in typedefs is me
@@ -36,62 +50,61 @@ const resolvers = {
         //     return User.findOne({ username })
         //         .select('-__v -password')
 
-        //         .populate('cookies')
-        //         .populate('reviews');
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
 
+      return { token, user };
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-        },
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-        Mutation: {
-            addUser: async (parent, args) => {
-                const user = await User.create(args);
-                const token = signToken(user);
+      const correctPw = await user.isCorrectPassword(password);
 
-                return { token, user };
-            },
-            login: async (parent, { email, password }) => {
-                const user = await User.findOne({ email });
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-                if (!user) {
-                    throw new AuthenticationError('Incorrect credentials');
-                }
+      const token = signToken(user);
+      return { token, user };
+    },
+    removeCookie: async (parent, { cookieName }, context) => {
+      if (context.user) {
+        const updatedSubscription = await Subscription.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedCookies: { cookieName } } },
+          { new: true }
+        );
+        return updatedSubscription;
+      }
+    },
 
-                const correctPw = await user.isCorrectPassword(password);
-
-                if (!correctPw) {
-                    throw new AuthenticationError('Incorrect credentials');
-                }
-
-                const token = signToken(user);
-                return { token, user };
-            },
-            removeCookie: async (parent, arg, context) => {
-                if (context.user) {
-                    const updatedUser = await User.findOneAndUpdate(
-                        { _id: context.user._id },
-                        { $pull: { savedCookies: { cookieid: args.cookieId } } },
-                        // { $pull: { savedCookies: { bookid: args.bookId } } },
-                        { new: true }
-
-                    );
-                    return updatedUser;
-                }
-            },
-
-            addCookie: async (parent, args, context) => {
-                if (context.user) {
-                    const updatedUser = await User.findOneAndUpdate(
-                        { _id: context.user._id },
-                        { $push: { savedCookies: args } },
-                        { new: true }
-                    );
-                    return updatedUser;
-                }
-            },
-
-
-        }
-    
+    addCookie: async (parent, { cookieName }, context) => {
+      if (context.user) {
+        const updatedSubscription = await Subscription.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedCookies: { cookieName } } },
+          { new: true }
+        );
+        return updatedSubscription;
+      }
+    },
+    //this is to put cookies inthe DB!
+    createCookie: async (parent, args) => {
+      const newCookie = await Cookie.create({
+        cookieName: cookieName,
+        image: image,
+        description: description,
+        allergens: allergens,
+      });
+      return newCookie;
+    },
+  },
+}
 };
-
 module.exports = resolvers;

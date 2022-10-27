@@ -6,7 +6,7 @@ const reviewSchema = new Schema(
     //name comes from the clicked cookie's name property to (.populate) with review query?
     cookieReviewed: {
       type: Schema.Types.ObjectId,
-      ref: "cookies",
+      ref: "Cookie",
     },
     //comes from the logged in user's userName
     createdBy: {
@@ -20,8 +20,8 @@ const reviewSchema = new Schema(
       trim: true,
     },
     createdAt: {
-      type: Date,
-      default: Date.now,
+      type: String,
+      default: new Date.now().toISOString(),
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
   },
