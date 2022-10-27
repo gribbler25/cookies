@@ -37,7 +37,7 @@ const typeDefs = gql`
   }
   type Query {
     getMe: User
-    getCookie: Cookie
+    getCookie(cookieName: String!): Cookie
     getCookies: [Cookie]
   }
   type Mutation {
