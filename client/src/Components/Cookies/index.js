@@ -25,28 +25,24 @@ const style = {
 
 function createData(
     name: string,
+    describe: String,
     calories: number,
     fat: number,
     carbs: number,
     protein: number
 ) {
-    return { name, calories, fat, carbs, protein };
+    return { name, describe, calories, fat, carbs, protein };
 }
 
-const cookies = [
-    createData('Chocolate Chip', 198, 9, 28, 3)
-];
+// function description(
+//     describe: String,
+// ) {
+//     return { describe };
+// }
 
-// const cookies = [
-//     {
-//         name: "Classic Chocolate Chip",
-//         description: "Better than ever....",
-//         calories:
-//         fat:
-//         carbs:
-//         protein:
-//     }
-// ];
+const cookies = [
+    createData('Chocolate Chip', 'Melt in your mouth delicious.', 198, 9, 28, 3),
+];
 
 function ProjectCookies() {
     const [open, setOpen] = React.useState(false);
@@ -64,6 +60,7 @@ function ProjectCookies() {
             >
                 <Box sx={style}>
                     <img src={chocolateChip} width="200px" height="200px"></img>
+                    <h2>{cookies[0].describe}</h2>
                     <TableContainer>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
