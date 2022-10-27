@@ -8,7 +8,7 @@ const reviewSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Cookie",
     },
-    //comes from the logged in user's userName
+    //comes from the logged in user's username
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "user",

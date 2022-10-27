@@ -11,3 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav-item {
+  list-style: none; 
+}
+
+a {
+  text-decoration: none;
+  padding-right: 10%;
+  margin-left: 3%;
+}
+
+h1 {
+  color: black;
+}
+
+.toolbar {
+  justify-content: space-around;
+  background-color: rgb(200, 162, 87);
+}
+
+.about {
+  margin-left: 10%;
+  margin-right: 13%;
+  margin-top: 7%;
+  display: inline-flex;
+}
+
+.about p {
+  line-height: 31px;
+}
+
+.modal-title {
+  margin-top: 7%;
+  text-align: center;
+}
+
+
+.contact-form {
+  margin-top: 10%;
+  margin-left: 35%;
+}
+
+.contact-message {
+  margin-left: 35%;
+}
+
+.contact-submit {
+  margin-left: 35%;
+  margin-top: 2%;
+}
+
+.contact-image {
+  margin-left: 28%;
+}
