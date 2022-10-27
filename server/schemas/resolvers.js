@@ -89,11 +89,7 @@ const resolvers = {
     },
     //this is to put cookies inthe DB!
     createCookie: async (parent, args) => {
-      const newCookie = await Cookie.create({
-        cookieName: cookieName,
-        description: description,
-        allergens: allergens,
-      });
+      const newCookie = await Cookie.create(args);
       return newCookie;
     },
   },
