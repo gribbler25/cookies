@@ -18,8 +18,8 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    getCookie: async (parent, { cookieName }) => {
-      const cookie = await Cookie.findOne({ cookieName }); //cookieName needs to match the name clicked on ??
+    getCookie: async (parent, args) => {
+      const cookie = await Cookie.findOne({ cookieName: args.cookieName }); //cookieName needs to match the name clicked on ??
       return cookie;
     },
     getCookies: async (parent) => {
