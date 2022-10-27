@@ -12,15 +12,10 @@ const subscriptionSchema = new Schema(
       enum: ["Small", "Medium", "Large"],
       default: "Medium",
     },
-    //subscription options comes from a selection dropdown on the order page?(too complicated for now)
-    // frequency: {
-    //   type: String,
-    //   required: true,
-    //   enum: ["Bi-Monthly , Monthly, Every-Three-Months"],
-    // },
+
     createdAt: {
-      type: Date,
-      default: Date.now,
+      type: String,
+      default: new Date.now().toISOString(),
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
     createdBy: {
@@ -29,26 +24,26 @@ const subscriptionSchema = new Schema(
     },
     //this comes from the price assoc with the 3 supbscription types and is stored as the number of cents, converted to decimal with get and set(below)
     total: {
-      type: Number,
+      type: String,
       required: true,
-      get: getPrice,
-      set: setPrice,
-    },
-  },
-  {
-    toJSON: {
-      getters: true,
-      setters: true,
+      // get: getPrice,
+      // set: setPrice,
     },
   }
+  // {
+  //   toJSON: {
+  //     getters: true,
+  //     setters: true,
+  //   },
+  // }
 );
 
-function getPrice(num) {
-  return (num / 100).toFixed(2);
-}
-function setPrice(num) {
-  return num * 100;
-}
+// function getPrice(num) {
+//   return (num / 100).toFixed(2);
+// }
+// function setPrice(num) {
+//   return num * 100;
+// }
 
 const Subscription = model("subscriptions", subscriptionSchema);
 
