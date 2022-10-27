@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
-
+const cookieSchema = require("./Cookie.js");
 const subscriptionSchema = new Schema(
   //push cookie names to cookiesIncluded Array as a part of ordering process from a list of options on order page?
   {
-    savedCookies: [cookieSchema],
+    savedCookies: [{ type: Schema.Types.ObjectId, ref: "cookies" }],
     //this is either small(12), medium(24), or large(36) order box monthly subscription, comes from selection dropdown
     boxSize: {
       type: String,
@@ -15,7 +15,7 @@ const subscriptionSchema = new Schema(
 
     createdAt: {
       type: String,
-      default: new Date.now().toISOString(),
+      default: () => new Date().toISOString(),
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
     createdBy: {

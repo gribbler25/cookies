@@ -37,7 +37,7 @@ const typeDefs = gql`
     user: User
   }
   type Query {
-    getmMe: User
+    getMe: User
     getCookie: Cookie
     getCookies: [Cookie]
   }
