@@ -7,9 +7,8 @@ const typeDefs = gql`
     _id: ID
     username: String!
     email: String!
-    password: String!
     reviews: [Review]
-    subscription: [Subscription]
+    subscription: Subscription
   }
   type Cookie {
     _id: ID
@@ -29,7 +28,7 @@ const typeDefs = gql`
     boxSize: String!
     createdAt: String
     createdBy: String
-    total: String
+    total: Int
   }
   type Auth {
     token: ID!
@@ -50,7 +49,7 @@ const typeDefs = gql`
       description: String
       allergens: [String]
     ): Cookie
-    addSubscription(savedCookies: [String!], boxSize: String!): User
+    addSubscription(savedCookies: [String!], boxSize: String!, total: Int): User
     deleteSubscription(_id: ID!): User
     addReview(cookieReviewed: String!, reviewText: String!): Cookie
     deleteReview(_id: ID!): Cookie

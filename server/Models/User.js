@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const reviewSchema = require("./Review.js");
 
+
 const userSchema = new Schema(
   {
     //don't know if I need to state this _id explicitly as ObjectId that others will reference
