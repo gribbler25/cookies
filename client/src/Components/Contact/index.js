@@ -3,6 +3,7 @@ import { validateEmail } from '../../utils/helpers';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Contact from '../../assets/Contact-page.jpg';
 
 const ContactForm = () => {
 
@@ -36,6 +37,7 @@ const ContactForm = () => {
     }
 
     return (
+        <div>
         <Box
             sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -92,6 +94,8 @@ const ContactForm = () => {
                 <button type="submit">Submit</button>
             </form> */}
         </Box>
+        <img src={Contact} width="650px" height="300px" className="contact-image" alt="cookie, coffee, man at desk with computer"></img>
+        </div>
     )
 }
 

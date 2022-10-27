@@ -32,8 +32,8 @@ h1 {
 }
 
 .about {
-  margin-left: 8%;
-  margin-right: 8%;
+  margin-left: 10%;
+  margin-right: 13%;
   margin-top: 7%;
   display: inline-flex;
 }
@@ -47,6 +47,7 @@ h1 {
   text-align: center;
 }
 
+
 .contact-form {
   margin-top: 10%;
   margin-left: 35%;
@@ -59,4 +60,8 @@ h1 {
 .contact-submit {
   margin-left: 35%;
   margin-top: 2%;
+}
+
+.contact-image {
+  margin-left: 28%;
 }
