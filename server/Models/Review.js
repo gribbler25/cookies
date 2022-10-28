@@ -6,7 +6,7 @@ const reviewSchema = new Schema(
     //name comes from the clicked cookie's name property to (.populate) with review query?
     cookieReviewed: {
       type: Schema.Types.ObjectId,
-      ref: "Cookie",
+      ref: "cookies",
     },
     //comes from the logged in user's username
     createdBy: {

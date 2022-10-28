@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
-const cookieSchema = require("./Cookie.js");
+// const cookieSchema = require("./Cookie.js");
 const subscriptionSchema = new Schema(
   //push cookie names to cookiesIncluded Array as a part of ordering process from a list of options on order page?
   {
