@@ -13,20 +13,20 @@ const typeDefs = gql`
   }
   type Cookie {
     _id: ID
-    cookieName: String!
-    description: String!
+    cookieName: String
+    description: String
     allergens: [String]
     reviews: [Review]
   }
   type Review {
-    cookieReviewed: String!
+    cookieReviewed: String
     createdBy: String
-    reviewText: String!
+    reviewText: String
     createdAt: String
   }
   type Subscription {
     savedCookies: [Cookie]
-    boxSize: String!
+    boxSize: String
     createdAt: String
     createdBy: String
     total: Int
@@ -43,17 +43,17 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userName: String!, email: String!, password: String!): Auth
-    addCookie(cookieName: String!): Subscription
-    removeCookie(cookieName: String!): Subscription
+    addCookie(cookieName: String): Subscription
+    removeCookie(cookieName: String): Subscription
     createCookie(
       cookieName: String
       description: String
       allergens: [String]
     ): Cookie
-    addSubscription(savedCookies: [String!], boxSize: String!, total: Int): User
-    deleteSubscription(_id: ID!): User
+    addSubscription(savedCookies: [String], boxSize: String, total: Int): User
+    deleteSubscription(_id: ID): User
     addReview(cookieReviewed: String!, reviewText: String!): Cookie
-    deleteReview(_id: ID!): Cookie
+    deleteReview(_id: ID): Cookie
   }
 `;
 
