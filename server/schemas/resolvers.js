@@ -55,12 +55,13 @@ const resolvers = {
 
     //button takes you to order page on front end, then submit button on order page form uses createOrder to push all the data into a new Order in the database and find the associated user to push to their orders array.
     createOrder: async (parent, args, context) => {
+      console.log(context.user);
       const newOrder = await Order.create({
         ...args,
-        user_id: context.user._id,
+        userName: context.user.userName,
       });
       await User.findByIdAndUpdate(
-        { _id: user_id },
+        { _id: context.user._id },
         { $push: { orders: newOrder } },
         { new: true }
       );
