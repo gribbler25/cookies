@@ -1,15 +1,16 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
-const { User, Cookie, Subscription, Review } = require("../models");
+const { User, Cookie, Order } = require("../models");
 
 const resolvers = {
   Query: {
     getMe: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select("-__v -password")
-          .populate("reviews")
-          .populate("subscriptions");
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
+        // .populate("reviews")
+        // .populate("subscriptions");
         console.log(userData);
 
         return userData;
@@ -25,23 +26,6 @@ const resolvers = {
       const cookies = await Cookie.find({});
       return cookies;
     },
-    // // get all users
-    // // replaced thoughts with reviews and friends with cookies
-    // only query in typedefs is me
-
-    // users: async () => {
-    //     return User.find()
-    //         .select('-__v -password')
-    //         .populate('cookies')
-    //         .populate('reviews');
-    // },
-    // // get a user by username
-    // user: async (parent, { username }) => {
-    //     return User.findOne({ username })
-    //         .select('-__v -password')
-
-    //         .populate('cookies')
-    //         .populate('reviews');
   },
 
   Mutation: {
@@ -51,6 +35,7 @@ const resolvers = {
 
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -67,82 +52,44 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    removeCookie: async (parent, { cookieName }, context) => {
-      if (context.user) {
-        const updatedSubscription = await Subscription.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedCookies: { cookieName } } },
-          { new: true }
-        );
-        return updatedSubscription;
-      }
+
+    //button takes you to order page on front end, then submit button on order page form uses createOrder to push all the data into a new Order in the database and find the associated user to push to their orders array.
+    createOrder: async (parent, args, context) => {
+      const newOrder = await Order.create({
+        ...args,
+        user_id: context.user._id,
+      });
+      await User.findByIdAndUpdate(
+        { _id: user_id },
+        { $push: { orders: newOrder } },
+        { new: true }
+      );
+      return newOrder;
     },
 
-    addCookie: async (parent, { cookieName }, context) => {
-      if (context.user) {
-        const updatedSubscription = await Subscription.findOneAndUpdate(
-          { _id: context.user._id },
-          { $push: { savedCookies: { cookieName } } },
-          { new: true }
-        );
-        return updatedSubscription;
-      }
-    },
     //this is to put cookies inthe DB!
-    createCookie: async (parent, { cookieName, description, allergens }) => {
+    createCookie: async (
+      parent,
+      { cookieName, description, allergens, reviews }
+    ) => {
       const newCookie = await Cookie.create({
         cookieName,
         description,
         allergens,
+        reviews,
       });
       return newCookie;
     },
 
-    //create a new review on a cookie
-    addReview: async (parent, { cookieReviewed, reviewText }) => {
-      // if (context.user){
-      const reviewData = await Review.create({ cookieReviewed, reviewText });
-
+    //front end function needs to call the current cookie 'cookieName' somehow, so it can be found in the DB by saying cookieName: cookieName below...
+    addReview: async (parent, args) => {
       const updatedCookie = await Cookie.findOneAndUpdate(
-        { cookieName: cookieReviewed },
-        { $push: { reviews: reviewData } },
+        { cookieName: cookieName },
+        { $push: { reviews: args } },
         { new: true }
       );
       return updatedCookie;
-      //}
-      //throw new AuthenticationError("you need to be logged in!");
-    },
-
-    deleteReview: async (parent, args, context) => {
-      if (context.user) {
-        const updatedCookie = await Cookie.findOneAndUpdate(
-          { _id: cookie._id },
-          { $pull: { reviews: { reviewId: args._id } } },
-          { new: true }
-        );
-        return updatedCookie;
-      }
-      throw new AuthenticationError("you need to be logged in!");
-    },
-    addSubscription: async (parent, args, context) => {
-      if (context.user) {
-        const subscriptionData = await Subscription.create(args);
-        console.log(subscriptionData);
-        const userData = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { subscription: subscriptionData._id },
-          { new: true }
-        );
-        console.log(userData);
-        return userData;
-      }
-      throw new AuthenticationError("Not logged in");
-    },
-    deleteSubscription: async (parent, args, context) => {
-      if (context.user) {
-      }
     },
   },
 };
-
 module.exports = resolvers;
