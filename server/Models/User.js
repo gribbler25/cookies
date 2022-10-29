@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 // const reviewSchema = require("./Review.js");
-const orderSchema = require("./Order");
+//const orderSchema = require("./Order");
 const userSchema = new Schema(
   {
     userName: {
@@ -25,7 +25,12 @@ const userSchema = new Schema(
     //   type: Boolean,
     // },
     //this sets orders to be an array of data adhearing to the order schema
-    orders: [String],
+    orders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Order"
+      }
+    ],
   },
 
   // set this to use virtual below

@@ -6,6 +6,10 @@ const cookieSchema = new Schema({
     required: true,
     unique: true,
   },
+  userName: {
+    type: String,
+    required: true,
+  },
 
   description: {
     type: String,

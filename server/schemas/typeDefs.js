@@ -14,16 +14,16 @@ const typeDefs = gql`
 
   type Cookie {
     _id: ID
+    userName: String
     cookieName: String
     description: String
     allergens: [String]
-    reviews: [String]
   }
 
   type Order {
     _id: ID
-    user_id: ID
-    cookies: [Cookie]
+    cookies: String
+    userName: String
     total: String
   }
 
@@ -41,12 +41,11 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userName: String!, email: String!, password: String!): Auth
-    createOrder(cookies: [String], total: String): Order
+    createOrder(cookies: String , total: String): Order
     createCookie(
       cookieName: String
       description: String
       allergens: [String]
-      reviews: [String]
     ): Cookie
     addReview(reviews: [String!]): Cookie
   }
