@@ -7,7 +7,7 @@ import About from './Components/About';
 import ProjectCookies from './Components/Cookies';
 import Contact from './Components/Contact';
 import User from './Components/User';
-
+import Order from './Components/Order';
 
 function Project() {
     const [currentPage, setCurrentPage] = useState('About');
@@ -24,6 +24,9 @@ function Project() {
         }
         if (currentPage === 'User') {
             return <User />;
+        }
+        if (currentPage === 'Order') {
+            return <Order />;
         }
     }
 
@@ -49,6 +52,10 @@ function Project() {
                     <Button color="inherit" 
                         href="#user" onClick={() => handlePageChange('User')}
                         className={currentPage === 'User' ? 'nav-link active' : 'nav-link'}>Login / SignUp
+                    </Button>
+                    <Button color="inherit" 
+                        href="#user" onClick={() => handlePageChange('Order')}
+                        className={currentPage === 'Order' ? 'nav-link active' : 'nav-link'}>Place Order
                     </Button>
                 </Toolbar>
             </AppBar>

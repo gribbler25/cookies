@@ -7,7 +7,7 @@ const orderSchema = new Schema({
     required: true
   },
   //assigning the logged in user's _id to this property, can it be a string?
-  userName: {
+  username: {
     type: String,
     required: true,
   },

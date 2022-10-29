@@ -5,7 +5,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type User {
     _id: ID
-    userName: String!
+    username: String!
     email: String!
     password: String!
     subscription: Boolean
@@ -13,8 +13,8 @@ const typeDefs = gql`
   }
 
   type Cookie {
-    _id: ID
-    userName: String
+    _id: ID,
+    username: String
     cookieName: String
     description: String
     allergens: [String]
@@ -23,7 +23,7 @@ const typeDefs = gql`
   type Order {
     _id: ID
     cookies: String
-    userName: String
+    username: String
     total: String
   }
 
@@ -34,13 +34,13 @@ const typeDefs = gql`
 
   type Query {
     getMe: User
+    getUsers: User
     getCookie(cookieName: String!): Cookie
     getCookies: [Cookie]
   }
-
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(userName: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     createOrder(cookies: String , total: String): Order
     createCookie(
       cookieName: String

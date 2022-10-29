@@ -4,6 +4,11 @@ const { User, Cookie, Order } = require("../models");
 
 const resolvers = {
   Query: {
+    getUsers: async () => {
+     return User.find()
+     .select("-__v -password");
+
+    },
     getMe: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
@@ -28,6 +33,23 @@ const resolvers = {
     },
   },
 
+        // }
+        // // get all users
+        // // replaced thoughts with reviews and friends with cookies 
+        // only query in typedefs is me
+        //is users and user needed?
+        
+        // users: async () => {
+        //     return User.find()
+        //         .select('-__v -password')
+        //         .populate('cookies')
+        //         .populate('reviews');
+        // },
+        // // get a user by username
+        // user: async (parent, { username }) => {
+        //     return User.findOne({ username })
+        //         .select('-__v -password')
+  
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -58,7 +80,7 @@ const resolvers = {
       console.log(context.user);
       const newOrder = await Order.create({
         ...args,
-        userName: context.user.userName,
+        username: context.user.username,
       });
       await User.findByIdAndUpdate(
         { _id: context.user._id },
