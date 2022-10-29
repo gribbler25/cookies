@@ -23,7 +23,7 @@ const typeDefs = gql`
   type Order {
     _id: ID
     cookies: String
-    username: String
+    email: String
     total: String
   }
 
@@ -46,6 +46,7 @@ const typeDefs = gql`
       cookieName: String
       description: String
       allergens: [String]
+      username: String
     ): Cookie
     addReview(reviews: [String!]): Cookie
   }

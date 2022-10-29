@@ -80,7 +80,7 @@ const resolvers = {
       console.log(context.user);
       const newOrder = await Order.create({
         ...args,
-        username: context.user.username,
+        email: context.user.email,
       });
       await User.findByIdAndUpdate(
         { _id: context.user._id },
@@ -93,13 +93,14 @@ const resolvers = {
     //this is to put cookies inthe DB!
     createCookie: async (
       parent,
-      { cookieName, description, allergens, reviews }
+      { cookieName, description, allergens, reviews, username }
     ) => {
       const newCookie = await Cookie.create({
         cookieName,
         description,
         allergens,
         reviews,
+        username
       });
       return newCookie;
     },
