@@ -4,6 +4,11 @@ const { User, Cookie, Order } = require("../models");
 
 const resolvers = {
   Query: {
+    getUsers: async () => {
+     return User.find()
+     .select("-__v -password");
+
+    },
     getMe: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
@@ -27,7 +32,6 @@ const resolvers = {
       return cookies;
     },
   },
-
 
   
   Mutation: {
@@ -60,7 +64,7 @@ const resolvers = {
       console.log(context.user);
       const newOrder = await Order.create({
         ...args,
-        userName: context.user.userName,
+        email: context.user.email,
       });
       await User.findByIdAndUpdate(
         { _id: context.user._id },
@@ -73,13 +77,14 @@ const resolvers = {
     //this is to put cookies inthe DB!
     createCookie: async (
       parent,
-      { cookieName, description, allergens, reviews }
+      { cookieName, description, allergens, reviews, username }
     ) => {
       const newCookie = await Cookie.create({
         cookieName,
         description,
         allergens,
         reviews,
+        username
       });
       return newCookie;
     },

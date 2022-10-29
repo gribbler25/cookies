@@ -5,10 +5,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 // import Contact from '../../assets/Contact-page.jpg';
 import Coco from '../../assets/chocolate.jpg';
+
 // import Button from '@mui/material/Button';
 // import { FormControl, RadioGroup } from '@mui/material';
 // import FormLabel from '@mui/material';
 // import FormControlLabel from '@mui/material';
+
 
 const OrderForm = () => {
 
@@ -49,10 +51,12 @@ const OrderForm = () => {
             }}
         >
             <div className="order-form">
+
                 <TextField
                     required
                     id="outlined-required"
                     label="Required"
+
                     defaultValue="Cookies"
                 />
 
@@ -60,6 +64,7 @@ const OrderForm = () => {
                     required
                     id="outlined-required"
                     label="Required"
+
                     defaultValue="Quantity"
                 />
             </div>
@@ -84,6 +89,7 @@ const OrderForm = () => {
 
             <div className="order-submit">
             <Button onClick="submit">Place an Order</Button>
+
             </div>
             {/* <h1 data-testid="h1tag">Contact Us</h1>
             <form id="contact-form" className="contact-form"onSubmit={handleSubmit}>
@@ -108,10 +114,13 @@ const OrderForm = () => {
                 <button type="submit">Submit</button>
             </form> */}
         </Box>
+
         <img src={Coco} width="650px" height="300px" className="order-image" alt="cookie, coffee, man at desk with computer"></img>
+
         </div>
     )
 }
+
 
 export default OrderForm;
 
@@ -150,3 +159,4 @@ export default OrderForm;
 //     </Box>
 //   );
 // }
+
