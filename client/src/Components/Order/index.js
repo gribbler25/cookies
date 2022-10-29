@@ -5,7 +5,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 // import Contact from '../../assets/Contact-page.jpg';
 import Coco from '../../assets/chocolate.jpg';
-
+// import Button from '@mui/material/Button';
+// import { FormControl, RadioGroup } from '@mui/material';
+// import FormLabel from '@mui/material';
+// import FormControlLabel from '@mui/material';
 
 const OrderForm = () => {
 
@@ -45,33 +48,42 @@ const OrderForm = () => {
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
             }}
         >
-            <div className="contact-form">
+            <div className="order-form">
                 <TextField
                     required
                     id="outlined-required"
                     label="Required"
-                    defaultValue="Name"
+                    defaultValue="Cookies"
                 />
 
                 <TextField
                     required
                     id="outlined-required"
                     label="Required"
-                    defaultValue="E-mail"
+                    defaultValue="Quantity"
                 />
             </div>
 
-            <div className="contact-message">
-                <TextField
-                    required
-                    id="outlined-multiline-static"
-                    label="Message"
-                    multiline
-                    rows={4}
-                />
-            </div>
-            <div className="contact-submit">
-            <Button onClick="submit">Leave A Message!</Button>
+              {/* use select from mui it looks like a drop down at bottom of file*/}
+
+            {/* <FormControl>
+
+            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+            >
+                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                <FormControlLabel value="male" control={<Radio />} label="Male" />
+                <FormControlLabel value="other" control={<Radio />} label="Other" />
+            </RadioGroup>
+            </FormControl> */}
+
+
+
+            <div className="order-submit">
+            <Button onClick="submit">Place an Order</Button>
             </div>
             {/* <h1 data-testid="h1tag">Contact Us</h1>
             <form id="contact-form" className="contact-form"onSubmit={handleSubmit}>
@@ -96,9 +108,45 @@ const OrderForm = () => {
                 <button type="submit">Submit</button>
             </form> */}
         </Box>
-        <img src={Coco} width="650px" height="300px" className="contact-image" alt="cookie, coffee, man at desk with computer"></img>
+        <img src={Coco} width="650px" height="300px" className="order-image" alt="cookie, coffee, man at desk with computer"></img>
         </div>
     )
 }
 
 export default OrderForm;
+
+// select from mui is like a dropdown https://mui.com/material-ui/react-select/ 
+
+// import * as React from 'react';
+// import Box from '@mui/material/Box';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+// export default function BasicSelect() {
+//   const [age, setAge] = React.useState('');
+
+//   const handleChange = (event: SelectChangeEvent) => {
+//     setAge(event.target.value as string);
+//   };
+
+//   return (
+//     <Box sx={{ minWidth: 120 }}>
+//       <FormControl fullWidth>
+//         <InputLabel id="demo-simple-select-label">Age</InputLabel>
+//         <Select
+//           labelId="demo-simple-select-label"
+//           id="demo-simple-select"
+//           value={age}
+//           label="Age"
+//           onChange={handleChange}
+//         >
+//           <MenuItem value={10}>Ten</MenuItem>
+//           <MenuItem value={20}>Twenty</MenuItem>
+//           <MenuItem value={30}>Thirty</MenuItem>
+//         </Select>
+//       </FormControl>
+//     </Box>
+//   );
+// }
