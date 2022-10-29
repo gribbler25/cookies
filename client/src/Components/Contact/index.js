@@ -68,8 +68,8 @@ const ContactForm = () => {
                     rows={4}
                 />
             </div>
-            <div className="contact-submit">
-            <Button onClick="submit">Leave A Message!</Button>
+            <div className="order-submit">
+            <Button onClick="submit">Add To Order</Button>
             </div>
             {/* <h1 data-testid="h1tag">Contact Us</h1>
             <form id="contact-form" className="contact-form"onSubmit={handleSubmit}>
