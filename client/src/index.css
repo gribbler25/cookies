@@ -48,7 +48,7 @@ h1 {
 }
 
 
-.contact-form {
+.contact-form, .order-form, .login-form, .signup-form {
   margin-top: 10%;
   margin-left: 35%;
 }
@@ -57,11 +57,11 @@ h1 {
   margin-left: 35%;
 }
 
-.contact-submit {
+.contact-submit, .order-submit, .login-form, .signup-form {
   margin-left: 35%;
   margin-top: 2%;
 }
 
-.contact-image {
+.contact-image, .order-image {
   margin-left: 28%;
 }
