@@ -94,7 +94,7 @@ const ContactForm = () => {
                 <button type="submit">Submit</button>
             </form> */}
         </Box>
-        <img src={Contact} width="650px" height="300px" className="contact-image" alt="cookie, coffee, man at desk with computer"></img>
+        <img src={Contact} width="650px" height="300px" className="order-image" alt="chocolate"></img>
         </div>
     )
 }
