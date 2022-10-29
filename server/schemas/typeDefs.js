@@ -8,52 +8,47 @@ const typeDefs = gql`
     userName: String!
     email: String!
     password: String!
-    reviews: [Review]
-    subscription: Subscription
+    subscription: Boolean
+    orders: [Order]
   }
+
   type Cookie {
     _id: ID
     cookieName: String
     description: String
     allergens: [String]
-    reviews: [Review]
+    reviews: [String]
   }
-  type Review {
-    cookieReviewed: String
-    createdBy: String
-    reviewText: String
-    createdAt: String
+
+  type Order {
+    _id: ID
+    user_id: ID
+    cookies: [Cookie]
+    total: String
   }
-  type Subscription {
-    savedCookies: [Cookie]
-    boxSize: String
-    createdAt: String
-    createdBy: String
-    total: Int
-  }
+
   type Auth {
     token: ID!
     user: User
   }
+
   type Query {
     getMe: User
     getCookie(cookieName: String!): Cookie
     getCookies: [Cookie]
   }
+
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userName: String!, email: String!, password: String!): Auth
-    addCookie(cookieName: String): Subscription
-    removeCookie(cookieName: String): Subscription
+    createOrder(cookies: [String], total: String): Order
     createCookie(
       cookieName: String
       description: String
       allergens: [String]
+      reviews: [String]
     ): Cookie
-    addSubscription(savedCookies: [String], boxSize: String, total: Int): User
-    deleteSubscription(_id: ID): User
-    addReview(cookieReviewed: String!, reviewText: String!): Cookie
-    deleteReview(_id: ID): Cookie
+    addReview(reviews: [String!]): Cookie
   }
 `;
 
