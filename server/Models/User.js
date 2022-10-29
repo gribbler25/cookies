@@ -1,15 +1,9 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 // const reviewSchema = require("./Review.js");
-
+//const orderSchema = require("./Order");
 const userSchema = new Schema(
   {
-    //don't know if I need to state this _id explicitly as ObjectId that others will reference
-    // _id: {
-    //   type: Schema.Types.ObjectId,
-    //   required: true,
-    //   unique: true,
-    // },
     userName: {
       type: String,
       required: true,
@@ -25,10 +19,20 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
-    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
-    subscription: { type: Schema.Types.ObjectId, ref: "subscriptions" },
+    // //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
+    // reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+    // subscription: {
+    //   type: Boolean,
+    // },
+    //this sets orders to be an array of data adhearing to the order schema
+    orders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Order"
+      }
+    ],
   },
+
   // set this to use virtual below
   {
     toJSON: {
