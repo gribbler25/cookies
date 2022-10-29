@@ -28,6 +28,23 @@ const resolvers = {
     },
   },
 
+        // }
+        // // get all users
+        // // replaced thoughts with reviews and friends with cookies 
+        // only query in typedefs is me
+        //is users and user needed?
+        
+        // users: async () => {
+        //     return User.find()
+        //         .select('-__v -password')
+        //         .populate('cookies')
+        //         .populate('reviews');
+        // },
+        // // get a user by username
+        // user: async (parent, { username }) => {
+        //     return User.findOne({ username })
+        //         .select('-__v -password')
+  
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);

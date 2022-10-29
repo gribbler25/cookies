@@ -5,7 +5,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type User {
     _id: ID
-    userName: String!
+    username: String!
     email: String!
     password: String!
     subscription: Boolean
@@ -37,7 +37,11 @@ const typeDefs = gql`
     getCookie(cookieName: String!): Cookie
     getCookies: [Cookie]
   }
+<<<<<<< HEAD
+  
+=======
 
+>>>>>>> ad45209f5003dfc5a5db5d5acff9b29ecbe32e62
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userName: String!, email: String!, password: String!): Auth
