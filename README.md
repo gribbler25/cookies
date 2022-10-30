@@ -23,3 +23,13 @@ We created an application that sells cookies through a subscription.
 Made with ❤️ by Cy Howard, Camille Howe, Ryan Kahlbaugh, Sarah Nguyen, Eric Schweitzer
 
 &copy; 
+
+
+<!-- this was taken out of client package.json it was after scripts  -->
+
+  <!-- "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }, -->

@@ -30,9 +30,12 @@ function Login() {
           </div>
         </div>
       </form>
-
-      <h2>Signup...</h2>
+      <Typography mt={5} align="center" variant="h2">
+        Signup...
+      </Typography>
       <form class="signup-form">
+
+        {/* this is from UI kit  */}
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
           <div>
             <label for="username-signup">Username:</label>
@@ -50,6 +53,7 @@ function Login() {
           </div>
           {/* {{!-- < button class="uk-button uk-button-link" type="submit" id="signup-btn">Signup</button> --}} */}
           <button
+
             class="uk-button uk-button-link hover-underline-animation"
             type="submit"
             id="signup-btn"
