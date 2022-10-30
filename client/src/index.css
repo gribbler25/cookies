@@ -31,7 +31,7 @@ h1 {
   background-color: rgb(200, 162, 87);
 }
 
-.about {
+.about, .login-form, .signup-form  {
   margin-left: 10%;
   margin-right: 13%;
   margin-top: 7%;
@@ -48,7 +48,7 @@ h1 {
 }
 
 
-.contact-form, .order-form, .login-form, .signup-form {
+.contact-form, .order-form{
   margin-top: 10%;
   margin-left: 35%;
 }
@@ -57,7 +57,7 @@ h1 {
   margin-left: 35%;
 }
 
-.contact-submit, .order-submit, .login-form, .signup-form {
+.contact-submit, .order-submit{
   margin-left: 35%;
   margin-top: 2%;
 }
@@ -65,3 +65,11 @@ h1 {
 .contact-image, .order-image {
   margin-left: 28%;
 }
+
+.login-form, .signup-form {
+  text-align: right;
+}
+
+/* .form-title {
+
+} */
