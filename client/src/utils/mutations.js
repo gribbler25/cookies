@@ -6,20 +6,46 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        userName
+        username
+        email
       }
     }
   }
 `;
 
 export const ADD_USER = gql`
-mutation addUser($userName: String!, $email: String!, $password:String!){
-    addUser(userName: $userName, email: $email, password: $password){
+mutation addUser($username: String!, $email: String!, $password: String!){
+    addUser(userName: $username, email: $email, password: $password){
     token
     user{
-        userName
+        _id
+        username
         email
          }
     }
 }
 `;
+export const CREATE_ORDER = gql`
+mutation createOrder($cookies: String, $total: String) {
+  createOrder(cookies: $cookies, total: $total) {
+    _id
+    cookies
+    email
+    total
+  }
+}
+`;
+
+export const CREATE_COOKIE =gql`
+mutation createCookie($description: String, $allergens: [String], $cookieName: String, $username: String) {
+  createCookie(description: $description, allergens: $allergens, cookieName: $cookieName, username: $username) {
+    _id
+    username
+    cookieName
+    description
+    allergens
+  }
+}
+`;
+
+
