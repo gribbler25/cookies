@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 //const orderSchema = require("./Order");
 const userSchema = new Schema(
   {
-    userName: {
+    username: {
       type: String,
       required: true,
       unique: true,
