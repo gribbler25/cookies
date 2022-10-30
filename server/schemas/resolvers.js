@@ -5,9 +5,7 @@ const { User, Cookie, Order } = require("../models");
 const resolvers = {
   Query: {
     getUsers: async () => {
-     return User.find()
-     .select("-__v -password");
-
+      return User.find().select("-__v -password");
     },
     getMe: async (parent, args, context) => {
       if (context.user) {
@@ -33,7 +31,6 @@ const resolvers = {
     },
   },
 
-  
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -66,6 +63,7 @@ const resolvers = {
         ...args,
         email: context.user.email,
       });
+      console.log(newOrder);
       await User.findByIdAndUpdate(
         { _id: context.user._id },
         { $push: { orders: newOrder } },
@@ -84,7 +82,7 @@ const resolvers = {
         description,
         allergens,
         reviews,
-        username
+        username,
       });
       return newCookie;
     },
