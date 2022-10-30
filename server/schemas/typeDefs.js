@@ -19,6 +19,11 @@ const typeDefs = gql`
     allergens: [String]
     reviews: [String]
   }
+  type Review {
+    _id: ID
+    reviewText: String
+    username: String
+  }
 
   type Order {
     _id: ID
@@ -34,7 +39,7 @@ const typeDefs = gql`
 
   type Query {
     getMe: User
-    getUsers: User
+    getUsers: [User]
     getCookie(cookieName: String!): Cookie
     getCookies: [Cookie]
   }
@@ -51,14 +56,7 @@ const typeDefs = gql`
       username: String
       reviews: [String]
     ): Cookie
+    addReview(cookieId: ID!, reviewText: String!): Cookie
   }
 `;
-//**note: getUsers doesnt work yet, getting an error: Cannot return null for non-nullable field User.username */
 module.exports = typeDefs;
-
-// type Review {
-//   _id: ID
-//   reviewText: String
-//   username: String
-// }
-//addReview(cookieId: ID, reviewText: String): Cookie

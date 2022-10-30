@@ -25,6 +25,7 @@ const resolvers = {
     },
     getCookie: async (parent, args) => {
       const cookie = await Cookie.findOne({ cookieName: args.cookieName }); //cookieName needs to match the name clicked on ??
+      console.log(cookie);
       return cookie;
     },
     getCookies: async (parent) => {
@@ -83,21 +84,22 @@ const resolvers = {
     //   );
     //   return updatedCookie;
     // },
-    // addReaction: async (parent, { thoughtId, reactionBody }, context) => {
-    //   if (context.user) {
-    //     const updatedThought = await Thought.findOneAndUpdate(
-    //       { _id: thoughtId },
-    //       {
-    //         $push: {
-    //           reactions: { reactionBody, username: context.user.username },
-    //         },
-    //       },
-    //       { new: true, runValidators: true }
-    //     );
-
-    //     return updatedThought;
-    //   }
-
+    addReview: async (parent, { cookieId, reviewText }, context) => {
+      if (context.user) {
+        console.log(context.user);
+        const updatedCookie = await Cookie.findOneAndUpdate(
+          { _id: cookieId },
+          {
+            $push: {
+              reviews: { reviewText, username: context.user.username },
+            },
+          },
+          { new: true, runValidators: true }
+        );
+        console.log(updatedCookie);
+        return updatedCookie;
+      }
+    },
     //this is to put cookies in and delete from the DB!
     createCookie: async (
       parent,

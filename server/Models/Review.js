@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 // const dateFormat = require('../utils/dateFormat');
 
 const reviewSchema = new Schema(
@@ -17,13 +17,13 @@ const reviewSchema = new Schema(
     //   default: Date.now,
     //   get: timestamp => dateFormat(timestamp)
     // }
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
   }
-  //   {
-  //     toJSON: {
-  //       getters: true
-  //     }
-  //   }
 );
-const Review = model("reviews", reviewSchema);
+// const Review = model("reviews", reviewSchema);
 
-// module.exports = Review;
+module.exports = reviewSchema;
