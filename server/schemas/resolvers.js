@@ -5,7 +5,9 @@ const { User, Cookie, Order } = require("../models");
 const resolvers = {
   Query: {
     getUsers: async () => {
-      return User.find().select("-__v -password");
+      const users = await User.find({}).select("-__v -password");
+      console.log(users);
+      return users;
     },
     getMe: async (parent, args, context) => {
       if (context.user) {
@@ -27,6 +29,7 @@ const resolvers = {
     },
     getCookies: async (parent) => {
       const cookies = await Cookie.find({});
+      console.log(cookies);
       return cookies;
     },
   },
@@ -56,7 +59,7 @@ const resolvers = {
       return { token, user };
     },
 
-    //button takes you to order page on front end, then submit button on order page form uses createOrder to push all the data into a new Order in the database and find the associated user to push to their orders array.
+    //submit button on order page form uses createOrder to push all the data into a new Order in the database and find the associated user to push order's ID to their orders array.
     createOrder: async (parent, args, context) => {
       console.log(context.user);
       const newOrder = await Order.create({
@@ -72,7 +75,30 @@ const resolvers = {
       return newOrder;
     },
 
-    //this is to put cookies inthe DB!
+    // addReview: async (parent, args) => {
+    //   const updatedCookie = await Cookie.findOneAndUpdate(
+    //     { cookieName: args.cookieName },
+    //     { $push: { reviews: args } },
+    //     { new: true }
+    //   );
+    //   return updatedCookie;
+    // },
+    // addReaction: async (parent, { thoughtId, reactionBody }, context) => {
+    //   if (context.user) {
+    //     const updatedThought = await Thought.findOneAndUpdate(
+    //       { _id: thoughtId },
+    //       {
+    //         $push: {
+    //           reactions: { reactionBody, username: context.user.username },
+    //         },
+    //       },
+    //       { new: true, runValidators: true }
+    //     );
+
+    //     return updatedThought;
+    //   }
+
+    //this is to put cookies in and delete from the DB!
     createCookie: async (
       parent,
       { cookieName, description, allergens, reviews, username }
@@ -87,15 +113,12 @@ const resolvers = {
       return newCookie;
     },
 
-    //front end function needs to call the current cookie 'cookieName' somehow, so it can be found in the DB by saying cookieName: cookieName below...
-    addReview: async (parent, args) => {
-      const updatedCookie = await Cookie.findOneAndUpdate(
-        { cookieName: cookieName },
-        { $push: { reviews: args } },
-        { new: true }
-      );
-      return updatedCookie;
+    deleteCookie: async (parent, args) => {
+      console.log(args);
+      await Cookie.findOneAndDelete({ cookieName: args.cookieName });
+      return;
     },
+    ///
   },
 };
 module.exports = resolvers;

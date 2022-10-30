@@ -1,6 +1,6 @@
 //import gql tagged template function
 const { gql } = require("apollo-server-express");
-
+//deleted subscrition field for User
 //typeDefs
 const typeDefs = gql`
   type User {
@@ -8,16 +8,16 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    subscription: Boolean
     orders: [Order]
   }
 
   type Cookie {
-    _id: ID,
+    _id: ID
     username: String
     cookieName: String
     description: String
     allergens: [String]
+    reviews: [String]
   }
 
   type Order {
@@ -42,15 +42,23 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    createOrder(cookies: String , total: String): Order
+    createOrder(cookies: String, total: String): Order
+    deleteCookie(cookieName: String): Cookie
     createCookie(
       cookieName: String
       description: String
       allergens: [String]
       username: String
+      reviews: [String]
     ): Cookie
-    addReview(reviews: [String!]): Cookie
   }
 `;
-
+//**note: getUsers doesnt work yet, getting an error: Cannot return null for non-nullable field User.username */
 module.exports = typeDefs;
+
+// type Review {
+//   _id: ID
+//   reviewText: String
+//   username: String
+// }
+//addReview(cookieId: ID, reviewText: String): Cookie

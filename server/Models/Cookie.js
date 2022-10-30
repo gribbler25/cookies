@@ -22,12 +22,11 @@ const cookieSchema = new Schema({
       type: String,
     },
   ],
-  //addReview just pushes the text string to this array
-  reviews: [
-    {
-      type: String,
-    },
-  ],
+  reviews: {
+    type: [String],
+  },
+  //addReview just pushes to this array
+  //reviews: [reviewSchema],
 });
 
 const Cookie = model("cookies", cookieSchema);

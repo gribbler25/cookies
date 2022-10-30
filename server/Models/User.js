@@ -6,7 +6,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
+      // required: true,
       unique: true,
     },
     email: {
@@ -19,6 +19,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    //commenting out review/subscript on a user for now to simplify(review is on cookie)
     // //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
     // reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
     // subscription: {
@@ -28,8 +29,8 @@ const userSchema = new Schema(
     orders: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Order"
-      }
+        ref: "Order",
+      },
     ],
   },
 
