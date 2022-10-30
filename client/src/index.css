@@ -31,7 +31,7 @@ h1 {
   background-color: rgb(200, 162, 87);
 }
 
-.about, .login-form, .signup-form  {
+.about {
   margin-left: 10%;
   margin-right: 13%;
   margin-top: 7%;
@@ -70,6 +70,13 @@ h1 {
   text-align: right;
 }
 
-/* .form-title {
+.signup-title, .login-title {
+   margin-left: 14% 
+}
 
-} */
+.login-form, .signup-form  {
+  margin-left: 10%;
+  margin-right: 13%;
+  /* margin-top: 7%;  */
+  display: inline-flex;
+}

@@ -5,7 +5,8 @@ import yum from '../../assets/yum.jpg';
 function Login() {
   return (
     <div>
-      <Typography mt={20} align="left" variant="h2">
+      
+      <Typography class="login-title" mt={20} align="left" variant="h2">
         Login...
       </Typography>
       <form class="login-form">
@@ -31,7 +32,8 @@ function Login() {
           </div>
         </div>
       </form>
-      <Typography  mt={5} align="left" variant="h2">
+      {/* adding a class(typography) makes the font smaller  */}
+      <Typography class="signup-title"  mt={5} align="left" variant="h2">
         Signup...
       </Typography>
       <form class="signup-form">
