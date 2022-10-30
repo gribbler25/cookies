@@ -1,106 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CookieModal from '../Modal';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import chocolateChip from '../../assets/chocolateChip.jpg';
-import { Typography } from '@mui/material';
-// import { flexbox } from '@mui/system';
+import choco from '../../assets/cookieImages/choco.jpg';
+import oatmeal from '../../assets/cookieImages/oatmeal.jpg';
+import gingersnap from '../../assets/cookieImages/gingersnap.jpg';
+import snicker from '../../assets/cookieImages/snickerdoodle.jpg';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 700,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 10,
-    p: 4,
-};
+// import ChocolateChip from '../../assets/chocolateChip.jpg';
+// import Oatmeal from '../../Components/Oatmeal';
 
-function createData(
-    name: string,
-    describe: String,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-    cost: number
-) {
-    return { name, describe, calories, fat, carbs, protein, cost };
-}
+// RESTARTING WITH BASIC MODAL / PROPS TO SEE IF IT WORKS
 
-// function description(
-//     describe: String,
-// ) {
-//     return { describe };
-// }
-
-const cookies = [
-    createData('Chocolate Chip', 'Melt in your mouth delicious.', 198, 9, 28, 3, 26),
-    createData('Oatmeal Raisin', 'description here', 218, 9, 32, 3, 30),
-    createData('Gingersnaps', 'gingersnap description', 106, 3, 19, 1, 29)
-];
-
-function ProjectCookies() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+const Cookie = () => {
+    const [open, setOpen] = React.useState(0);
+    const handleOpen = event => {console.log(event.target); setOpen(event.target.dataset.id)};
     const handleClose = () => setOpen(false);
-
+    const [cookies, setCookies] = useState([
+        { id: 1, name: 'Chocolate Chip', image: [choco], description: 'Melt in your mouth delicious.', calories: 198, fat: 9, carbs: 28, protein: 3, price: 26 },
+        { id: 2, name: 'Oatmeal Raisin', image: [oatmeal], description: 'oatmeal description', calories: 218, fat: 9, carbs: 32, protein: 3, price: 30 },
+        { id: 3, name: 'Snickerdoodle', image: [snicker], description: 'snickerdoodle description', calories: 92, fat: 4, carbs: 12, protein: 1, price: 34 },
+        { id: 4, name: 'Gingersnaps', image: [gingersnap], description: 'gingersnap description', calories: 106, fat: 3, carbs: 19, protein: 1, price: 29 }
+    ]);
 
     return (
-
         <div className="modal-title">
-            {cookies.map((row) => (
-                <Button onClick={handleOpen}>{row.name}</Button>
+            
+            {cookies.map((cookie) => (
+                <Button key={cookie.id} data-id={cookie.id} onClick={handleOpen}>{cookie.name}</Button>
             ))}
-                <Modal
-                    open={open}
-                    onClose={handleClose}
+            <Modal
+                open={!!open}
+                onClose={handleClose}
             >
-            <Box sx={style}>
-                <img src={chocolateChip} width="200px" height="200px" alt=""></img>
-
-                <TableContainer>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Cookie</TableCell>
-                                <TableCell align="right">Calories</TableCell>
-                                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {cookies.map((row) => (
-                                <TableRow
-                                    key={row.name}
-                                    sx={{ '&:last=child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.calories}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
-                                    <TableCell align="right">{row.protein}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <h3>Price: ${cookies[0].cost} / dozen</h3>
-            </Box>
-        </Modal>
-        </div >
+                <div>
+                    <CookieModal cookies={cookies.filter(cookie => cookie.id == open)} />
+                </div>
+            </Modal>
+        </div>
     )
-}
+};
 
-export default ProjectCookies;
+export default Cookie;
