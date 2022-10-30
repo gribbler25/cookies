@@ -4,7 +4,7 @@ import React from "react";
 function Login() {
   return (
     <div>
-      <Typography mt={5} align="center" variant="h2">
+      <Typography mt={20} align="center" variant="h2">
         Login...
       </Typography>
       <form class="login-form">
@@ -35,7 +35,7 @@ function Login() {
       </Typography>
       <form class="signup-form">
 
-        {/* this is from UI kit  */}
+        {/* this is from UI kit not sure if mui does this  */}
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
           <div>
             <label for="username-signup">Username:</label>
@@ -62,6 +62,12 @@ function Login() {
           </button>
         </div>
       </form>
+      
+      <Typography
+            align="right"
+            >
+            <img src={assortmentEdit} width="47%" height="81%" alt=""></img>
+            </Typography>
     </div>
   );
 }
