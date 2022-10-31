@@ -9,7 +9,7 @@ const resolvers = {
       const users = await User.find({})
         .select("-__v -password")
         .populate("orders");
-      console.log(users);
+
       return users;
     },
     getMe: async (parent, args, context) => {
@@ -17,8 +17,6 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("orders");
-
-        console.log(userData);
 
         return userData;
       }
@@ -64,25 +62,25 @@ const resolvers = {
 
     //submit button on order page form uses createOrder to push all the data into a new Order in the database and find the associated user to push order's ID to their orders array.
     createOrder: async (parent, args, context) => {
-      console.log(context.user);
-      const newOrder = await Order.create({
-        ...args,
-        email: context.user.email,
-      });
-      console.log(newOrder);
+      if (context.user) {
+        const newOrder = await Order.create({
+          ...args,
+          email: context.user.email,
+        });
 
-      await User.findByIdAndUpdate(
-        { _id: context.user._id },
-        { $push: { orders: newOrder } },
-        { new: true }
-      );
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { orders: newOrder } },
+          { new: true }
+        );
 
-      return newOrder;
+        return newOrder;
+      }
+      throw new AuthenticationError("Not logged in");
     },
 
     addReview: async (parent, { cookienameId, reviewText }, context) => {
       if (context.user) {
-        console.log(context.user);
         const updatedCookie = await Cookie.findOneAndUpdate(
           { cookieName: cookienameId }, //does Mongo assign an ObjectId whenever we need to findOneAndUpdate by some property?
           {
@@ -93,20 +91,20 @@ const resolvers = {
           { new: true, runValidators: true }
         );
 
-        console.log(updatedCookie);
         return updatedCookie;
       }
+      throw new AuthenticationError("Not logged in");
     },
     //this is to put cookies in and delete from the DB!
     createCookie: async (
       parent,
-      { cookieName, description, allergens, reviews, username }
+      { cookieName, description, allergens, username }
     ) => {
       const newCookie = await Cookie.create({
         cookieName,
         description,
         allergens,
-        reviews,
+        // reviews,
         username,
       });
       return newCookie;

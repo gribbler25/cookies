@@ -54,9 +54,9 @@ const typeDefs = gql`
       description: String
       allergens: [String]
       username: String
-      reviews: [ID]
     ): Cookie
     addReview(cookienameId: String!, reviewText: String!): Cookie
   }
 `;
 module.exports = typeDefs;
+//reviews: [ID]//
