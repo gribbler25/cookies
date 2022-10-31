@@ -1,6 +1,6 @@
 //import gql tagged template function
 const { gql } = require("apollo-server-express");
-
+//deleted subscrition field for User
 //typeDefs
 const typeDefs = gql`
   type User {
@@ -8,16 +8,21 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    subscription: Boolean
     orders: [Order]
   }
 
   type Cookie {
-    _id: ID,
+    _id: ID
     username: String
     cookieName: String
     description: String
     allergens: [String]
+    reviews: [Review]
+  }
+  type Review {
+    _id: ID
+    reviewText: String
+    username: String
   }
 
   type Order {
@@ -34,7 +39,7 @@ const typeDefs = gql`
 
   type Query {
     getMe: User
-    getUsers: User
+    getUsers: [User]
     getCookie(cookieName: String!): Cookie
     getCookies: [Cookie]
   }
@@ -42,15 +47,16 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    createOrder(cookies: String , total: String): Order
+    createOrder(cookies: String, total: String): Order
+    deleteCookie(cookieName: String): Cookie
     createCookie(
       cookieName: String
       description: String
       allergens: [String]
       username: String
     ): Cookie
-    addReview(reviews: [String!]): Cookie
+    addReview(cookienameId: String!, reviewText: String!): Cookie
   }
 `;
-
 module.exports = typeDefs;
+//reviews: [ID]//

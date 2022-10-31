@@ -6,7 +6,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
+      // required: true,
       unique: true,
     },
     email: {
@@ -19,17 +19,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
-    // reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
-    // subscription: {
-    //   type: Boolean,
-    // },
+
     //this sets orders to be an array of data adhearing to the order schema
     orders: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Order"
-      }
+        ref: "orders",
+      },
     ],
   },
 
