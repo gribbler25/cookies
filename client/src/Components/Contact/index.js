@@ -69,7 +69,7 @@ const ContactForm = () => {
                 />
             </div>
             <div className="order-submit">
-            <Button onClick="submit">Add To Order</Button>
+            <Button onClick="submit">Leave A Message!</Button>
             </div>
             {/* <h1 data-testid="h1tag">Contact Us</h1>
             <form id="contact-form" className="contact-form"onSubmit={handleSubmit}>
