@@ -47,8 +47,12 @@ h1 {
   text-align: center;
 }
 
+.modal-image img {
+  height: 150px;
+  width: 180px;
+}
 
-.contact-form {
+.contact-form, .order-form{
   margin-top: 10%;
   margin-left: 35%;
 }
@@ -57,11 +61,26 @@ h1 {
   margin-left: 35%;
 }
 
-.contact-submit {
+.contact-submit, .order-submit{
   margin-left: 35%;
   margin-top: 2%;
 }
 
-.contact-image {
+.contact-image, .order-image {
   margin-left: 28%;
+}
+
+.login-form, .signup-form {
+  text-align: right;
+}
+
+.signup-title, .login-title {
+   margin-left: 14% 
+}
+
+.login-form, .signup-form  {
+  margin-left: 10%;
+  margin-right: 13%;
+  /* margin-top: 7%;  */
+  display: inline-flex;
 }

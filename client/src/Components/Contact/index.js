@@ -68,7 +68,7 @@ const ContactForm = () => {
                     rows={4}
                 />
             </div>
-            <div className="contact-submit">
+            <div className="order-submit">
             <Button onClick="submit">Leave A Message!</Button>
             </div>
             {/* <h1 data-testid="h1tag">Contact Us</h1>
@@ -94,7 +94,7 @@ const ContactForm = () => {
                 <button type="submit">Submit</button>
             </form> */}
         </Box>
-        <img src={Contact} width="650px" height="300px" className="contact-image" alt="cookie, coffee, man at desk with computer"></img>
+        <img src={Contact} width="650px" height="300px" className="order-image" alt="chocolate"></img>
         </div>
     )
 }

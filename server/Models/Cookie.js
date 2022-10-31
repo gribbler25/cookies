@@ -6,24 +6,28 @@ const cookieSchema = new Schema({
     required: true,
     unique: true,
   },
-  //image will be a string that is the http link to the image like in Book-engine?
-  // image: {
-  //   type: String,
-  //   unique: true,
-  // },
+  username: {
+    type: String,
+    required: true,
+  },
+
   description: {
     type: String,
     required: true,
     unique: true,
   },
-  //we can just put Wheat, Dairy, Egg, Peanut, Soy, and Tree nut here as applicable when add cookie to DB
+  //we can just put Wheat, Dairy, Egg, Peanut, Soy, and Tree nut here as applicable when creating cookies in the DB
   allergens: [
     {
       type: String,
     },
   ],
-  //need all the reviews with this cookieType's _id to (.populate) when cookie queried
-  reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+  //addReview just pushes the text string to this array
+  reviews: [
+    {
+      type: String,
+    },
+  ],
 });
 
 const Cookie = model("cookies", cookieSchema);

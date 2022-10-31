@@ -5,55 +5,51 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type User {
     _id: ID
-    userName: String!
+    username: String!
     email: String!
     password: String!
-    reviews: [Review]
-    subscription: Subscription
+    subscription: Boolean
+    orders: [Order]
   }
+
   type Cookie {
-    _id: ID
+    _id: ID,
+    username: String
     cookieName: String
     description: String
     allergens: [String]
-    reviews: [Review]
   }
-  type Review {
-    cookieReviewed: String
-    createdBy: String
-    reviewText: String
-    createdAt: String
+
+  type Order {
+    _id: ID
+    cookies: String
+    email: String
+    total: String
   }
-  type Subscription {
-    savedCookies: [Cookie]
-    boxSize: String
-    createdAt: String
-    createdBy: String
-    total: Int
-  }
+
   type Auth {
     token: ID!
     user: User
   }
+
   type Query {
     getMe: User
+    getUsers: User
     getCookie(cookieName: String!): Cookie
     getCookies: [Cookie]
   }
+
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(userName: String!, email: String!, password: String!): Auth
-    addCookie(cookieName: String): Subscription
-    removeCookie(cookieName: String): Subscription
+    addUser(username: String!, email: String!, password: String!): Auth
+    createOrder(cookies: String , total: String): Order
     createCookie(
       cookieName: String
       description: String
       allergens: [String]
+      username: String
     ): Cookie
-    addSubscription(savedCookies: [String], boxSize: String, total: Int): User
-    deleteSubscription(_id: ID): User
-    addReview(cookieReviewed: String!, reviewText: String!): Cookie
-    deleteReview(_id: ID): Cookie
+    addReview(reviews: [String!]): Cookie
   }
 `;
 

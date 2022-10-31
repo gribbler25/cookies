@@ -1,10 +1,12 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import yum from '../../assets/yum.jpg';
 
 function Login() {
   return (
     <div>
-      <Typography mt={5} align="center" variant="h2">
+      
+      <Typography class="login-title" mt={20} align="left" variant="h2">
         Login...
       </Typography>
       <form class="login-form">
@@ -30,9 +32,14 @@ function Login() {
           </div>
         </div>
       </form>
-
-      <h2>Signup...</h2>
+      {/* adding a class(typography) makes the font smaller  */}
+      <Typography class="signup-title"  mt={5} align="left" variant="h2">
+        Signup...
+      </Typography>
       <form class="signup-form">
+
+        {/* this is from UI kit not sure if mui does this  */}
+        {/* <div class="uk-card uk-card-default uk-card-hover uk-card-body"> */}
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
           <div>
             <label for="username-signup">Username:</label>
@@ -50,6 +57,7 @@ function Login() {
           </div>
           {/* {{!-- < button class="uk-button uk-button-link" type="submit" id="signup-btn">Signup</button> --}} */}
           <button
+
             class="uk-button uk-button-link hover-underline-animation"
             type="submit"
             id="signup-btn"
@@ -58,6 +66,12 @@ function Login() {
           </button>
         </div>
       </form>
+
+      <Typography
+            align="right"
+            >
+            <img src={yum} width="30%" height="70%" alt=""></img>
+            </Typography>
     </div>
   );
 }
