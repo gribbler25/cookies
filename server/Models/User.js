@@ -19,17 +19,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    //commenting out review/subscript on a user for now to simplify(review is on cookie)
-    // //reviews and orders included (.poulate) when user queries themselves for their dashboard page...?
-    // reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
-    // subscription: {
-    //   type: Boolean,
-    // },
+
     //this sets orders to be an array of data adhearing to the order schema
     orders: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Order",
+        ref: "orders",
       },
     ],
   },

@@ -1,21 +1,23 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const { User, Cookie, Order } = require("../models");
+const { isObjectIdOrHexString } = require("mongoose");
 
 const resolvers = {
   Query: {
     getUsers: async () => {
-      const users = await User.find({}).select("-__v -password");
+      const users = await User.find({})
+        .select("-__v -password")
+        .populate("orders");
       console.log(users);
       return users;
     },
     getMe: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select(
-          "-__v -password"
-        );
-        // .populate("reviews")
-        // .populate("subscriptions");
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("orders");
+
         console.log(userData);
 
         return userData;
@@ -68,27 +70,21 @@ const resolvers = {
         email: context.user.email,
       });
       console.log(newOrder);
+
       await User.findByIdAndUpdate(
         { _id: context.user._id },
         { $push: { orders: newOrder } },
         { new: true }
       );
+
       return newOrder;
     },
 
-    // addReview: async (parent, args) => {
-    //   const updatedCookie = await Cookie.findOneAndUpdate(
-    //     { cookieName: args.cookieName },
-    //     { $push: { reviews: args } },
-    //     { new: true }
-    //   );
-    //   return updatedCookie;
-    // },
-    addReview: async (parent, { cookieId, reviewText }, context) => {
+    addReview: async (parent, { cookienameId, reviewText }, context) => {
       if (context.user) {
         console.log(context.user);
         const updatedCookie = await Cookie.findOneAndUpdate(
-          { _id: cookieId },
+          { cookieName: cookienameId }, //does Mongo assign an ObjectId whenever we need to findOneAndUpdate by some property?
           {
             $push: {
               reviews: { reviewText, username: context.user.username },
@@ -96,6 +92,7 @@ const resolvers = {
           },
           { new: true, runValidators: true }
         );
+
         console.log(updatedCookie);
         return updatedCookie;
       }

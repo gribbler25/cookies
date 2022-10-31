@@ -17,7 +17,7 @@ const typeDefs = gql`
     cookieName: String
     description: String
     allergens: [String]
-    reviews: [String]
+    reviews: [Review]
   }
   type Review {
     _id: ID
@@ -54,9 +54,9 @@ const typeDefs = gql`
       description: String
       allergens: [String]
       username: String
-      reviews: [String]
+      reviews: [ID]
     ): Cookie
-    addReview(cookieId: ID!, reviewText: String!): Cookie
+    addReview(cookienameId: String!, reviewText: String!): Cookie
   }
 `;
 module.exports = typeDefs;
