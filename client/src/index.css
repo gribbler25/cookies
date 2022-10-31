@@ -52,23 +52,26 @@ h1 {
   width: 180px;
 }
 
-.contact-form, .order-form{
-  margin-top: 10%;
-  margin-left: 35%;
+.contact-form, .order-form {
+  margin-top: 12%; 
+  /* margin-left: 35%; */
+  text-align: center;
 }
 
 .contact-message {
-  margin-left: 35%;
+  /* margin-left: 35%; */
+  text-align: center;
 }
 
 .contact-submit, .order-submit{
-  margin-left: 35%;
+  text-align: center;
   margin-top: 2%;
+  margin-bottom: 2%;
 }
 
-.contact-image, .order-image {
+/* .contact-image, .order-image {
   margin-left: 28%;
-}
+} */
 
 /* .login-form, .signup-form {
   text-align: right;
@@ -76,13 +79,16 @@ h1 {
 } */
 
 .signup-title, .login-title {
-   margin-left: 50% 
+  text-align: center;
 }
+
 .login-form {
-margin-left: 40%;
+/* margin-left: 40%; */
+text-align: center;
 }
 .signup-form {
-margin-left: 40% ;
+/* margin-left: 40% ; */
+text-align: center;
 margin-bottom: 20px;
 }
 
