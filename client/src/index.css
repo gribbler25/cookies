@@ -70,17 +70,19 @@ h1 {
   margin-left: 28%;
 }
 
-.login-form, .signup-form {
+/* .login-form, .signup-form {
   text-align: right;
-}
+  margin-bottom: 20px;
+} */
 
 .signup-title, .login-title {
-   margin-left: 14% 
+   margin-left: 50% 
 }
 
 .login-form, .signup-form  {
-  margin-left: 10%;
+  margin-left: 15%;
   margin-right: 13%;
   /* margin-top: 7%;  */
   display: inline-flex;
+  margin-bottom: 20px;
 }
