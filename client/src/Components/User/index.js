@@ -1,7 +1,8 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'; 
 import yum from '../../assets/yum.jpg';
+import bake from '../../assets/bake.jpg'
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -111,9 +112,9 @@ function Login() {
       </form> */}
 
       <Typography
-        align="right"
+        align="center"
       >
-        <img src={yum} width="30%" height="70%" alt=""></img>
+        <img src={bake} width="70%" height="50%" alt=""></img>
       </Typography>
     </div>
   );
