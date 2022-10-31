@@ -18,12 +18,12 @@ function Login() {
       {/* React-hook-form here */}
       
       <form onSubmit={handleSubmit(onSubmit)} className="login-form">
-        <div>
-          <label htmlFor="username">Username</label>
+        <div class="user-login">
+          <label htmlFor="username">Username  </label>
           <input {...register("username")} placeholder="Username" />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div class="password-login">
+          <label htmlFor="password">Password  </label>
           <input {...register("password")} type="password" placeholder="Password" />
         </div>
         <input type="submit" className="login-submit" />
@@ -59,16 +59,16 @@ function Login() {
       {/* React-hook-form here */}
 
       <form onSubmit={handleSubmit(onSubmit)} className="signup-form">
-        <div>
-          <label htmlFor="username">Username</label>
+        <div class="signup-username">
+          <label htmlFor="username">Username  </label>
           <input {...register("username", { required: true })} placeholder="Username" />
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
+        <div class="signup-email">
+          <label htmlFor="email">Email  </label>
           <input {...register("email", { required: true })} type="text" placeholder="Email" />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div class="signup-password">
+          <label htmlFor="password">Password  </label>
           <input {...register("password", { required: true })} type="password" placeholder="password" />
         </div>
 

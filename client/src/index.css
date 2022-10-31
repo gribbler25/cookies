@@ -78,11 +78,22 @@ h1 {
 .signup-title, .login-title {
    margin-left: 50% 
 }
+.login-form {
+margin-left: 40%;
+}
+.signup-form {
+margin-left: 40% ;
+margin-bottom: 20px;
+}
 
-.login-form, .signup-form  {
+/* .login-form,  {
   margin-left: 15%;
   margin-right: 13%;
   /* margin-top: 7%;  */
-  display: inline-flex;
+  /* display: inline-flex;
   margin-bottom: 20px;
-}
+} */ 
+
+.password-login, .user-login, .signup-username, .signup-email, .signup-password {
+  padding: 5px;
+} 
