@@ -14,6 +14,7 @@ import snicker from '../../assets/cookieImages/snickerdoodle.jpg';
 
 const Cookie = () => {
     const [open, setOpen] = React.useState(0);
+    // nextline is an error on dev tools
     const handleOpen = event => {console.log(event.target); setOpen(event.target.dataset.id)};
     const handleClose = () => setOpen(false);
     const [cookies, setCookies] = useState([
@@ -26,9 +27,15 @@ const Cookie = () => {
     return (
         <div className="modal-title">
             
+            <div style={{display: "flex"}}>
             {cookies.map((cookie) => (
-                <Button key={cookie.id} data-id={cookie.id} onClick={handleOpen}>{cookie.name}</Button>
+                <div>
+                    <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image}style={{height: "200px", width: "200px"}}></img></Button>
+                    <p>{cookie.name}</p>
+                </div>
             ))}
+            </div>
+            {/* <Gallery currentGroup={cookies}/> */}
             <Modal
                 open={!!open}
                 onClose={handleClose}

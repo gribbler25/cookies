@@ -33,6 +33,10 @@ export default function CookieModal(props) {
         setOpen(false);
     };
     const { register, handleSubmit, reset, formState } = useForm();
+    // you're getting to this point and then not using your data, because it's just being logged
+    // you have a reviewForm component that is not being used. It has no information being returned
+    // just perform your query or mutation from this file under the onSubmit
+    //good luck!
     const onSubmit = data => console.log(data);
 
     React.useEffect(() => {
@@ -91,7 +95,7 @@ export default function CookieModal(props) {
                 onClose={handleClose}
                 >
                     <Box sx={{...style, width: 500 }}>
-                        <TextField label="Add Review Here" variant="standard" />
+                        {/* <TextField label="Add Review Here" variant="standard" /> */}
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div>
                                 <TextField {...register("review", { required: true})} />
