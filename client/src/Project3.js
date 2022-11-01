@@ -9,9 +9,15 @@ import Contact from './Components/Contact';
 import Signup from './Components/Signup';
 import Login from './Components/Login';
 import Order from './Components/Order';
+import Auth from './utils/auth';
+import { Link } from 'react-router-dom';
 
 function Project() {
     const [currentPage, setCurrentPage] = useState('About');
+    const logout = event => {
+        event.preventDefault();
+        Auth.logout();
+    };
 
     const renderPage = () => {
         if (currentPage === 'About') {
@@ -53,6 +59,15 @@ function Project() {
                         href="#contact" onClick={() => handlePageChange('Contact')}
                         className={currentPage === 'Contact' ? 'nav-link active' : 'nav-link'}>Contact
                     </Button>
+                    {Auth.loggedIn() ? (
+                    <>
+      
+                     <Button color="inherit" href="/" onClick={logout}>
+                          Logout
+                        </Button>
+                            </>
+                    ) : (
+                            <>
                     <Button color="inherit" 
                         href="#signup" onClick={() => handlePageChange('Signup')}
                         className={currentPage === 'Signup' ? 'nav-link active' : 'nav-link'}>Signup
@@ -61,6 +76,9 @@ function Project() {
                         href="#login" onClick={() => handlePageChange('Login')}
                         className={currentPage === 'Login' ? 'nav-link active' : 'nav-link'}>Login
                     </Button>
+                    </>
+                        )}
+
                     <Button color="inherit" 
                         href="#user" onClick={() => handlePageChange('Order')}
                         className={currentPage === 'Order' ? 'nav-link active' : 'nav-link'}>Place Order

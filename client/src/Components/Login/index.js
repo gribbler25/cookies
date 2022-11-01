@@ -4,10 +4,10 @@ import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 
-const Login = ()=>{
+const Login = (props)=>{
 
     const [loginFormState, setLoginFormState] = useState({email:'', password:''});
-    const [loginUser, {error}] = useMutation(LOGIN_USER);
+    const [login, {error}] = useMutation(LOGIN_USER);
     
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -21,10 +21,10 @@ const Login = ()=>{
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try{
-            const { data } = await loginUser({
+            const { data } = await login({
                 variables: {...loginFormState}
             });
-            Auth.login(data.loginUser.token);
+            Auth.login(data.login.token);
         }catch(e){
             console.error(e);
         }
