@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import About from './Components/About';
 import ProjectCookies from './Components/Cookies';
 import Contact from './Components/Contact';
-import User from './Components/User';
+import {Signup, Login} from './Components/SignupLogin';
 import Order from './Components/Order';
 
 function Project() {
@@ -22,8 +22,11 @@ function Project() {
         if (currentPage === 'Contact') {
             return <Contact />;
         }
-        if (currentPage === 'User') {
-            return <User />;
+        if (currentPage === 'Signup') {
+            return <Signup />;
+        }
+        if (currentPage === 'Login'){
+            return <Login />;
         }
         if (currentPage === 'Order') {
             return <Order />;
@@ -50,8 +53,12 @@ function Project() {
                         className={currentPage === 'Contact' ? 'nav-link active' : 'nav-link'}>Contact
                     </Button>
                     <Button color="inherit" 
-                        href="#user" onClick={() => handlePageChange('User')}
-                        className={currentPage === 'User' ? 'nav-link active' : 'nav-link'}>Login / SignUp
+                        href="#signup" onClick={() => handlePageChange('Signup')}
+                        className={currentPage === 'Signup' ? 'nav-link active' : 'nav-link'}>Signup
+                    </Button>
+                    <Button color="inherit" 
+                        href="#login" onClick={() => handlePageChange('Login')}
+                        className={currentPage === 'Login' ? 'nav-link active' : 'nav-link'}>Login
                     </Button>
                     <Button color="inherit" 
                         href="#user" onClick={() => handlePageChange('Order')}
