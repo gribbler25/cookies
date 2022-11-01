@@ -107,7 +107,6 @@ export default function CookieModal(props) {
                 </Modal>
                 {cookies.map((cookie) => (
                     <div>
-                <button>Add To Cart</button>
                 <h3>Price: ${cookie.price} / dozen cookies</h3>
                 </div>
                 ))}
