@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from 'react-hook-form'; 
 // import yum from '../../assets/yum.jpg';
 import bake from '../../assets/bake.jpg'; 
+import Button from '@mui/material/Button';
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -26,7 +27,8 @@ function Login() {
           <label htmlFor="password">Password  </label>
           <input {...register("password")} type="password" placeholder="Password" />
         </div>
-        <input type="submit" className="login-submit" />
+        {/* <input type="submit" className="login-submit" /> */}
+        <Button onClick="submit">LOGIN</Button>
       </form>
       {/* <form class="login-form">
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
@@ -77,7 +79,8 @@ function Login() {
           {Object.keys(errors).length > 0 &&
             "There are errors."}
         </div>
-        <input type="submit" className="signup-submit" />
+        {/* <input type="submit" className="signup-submit" /> */}
+               <Button onClick="submit">SIGNUP</Button>
       </form>
 
       {/* <form class="signup-form"> */}
