@@ -4,4 +4,9 @@ const Cookie = require("./Cookie");
 // const Review = require("./Review");
 const Order = require("./Order");
 
-module.exports = { User, Cookie, Order };
+module.exports = {
+  User,
+  Cookie,
+  Order,
+  // Review
+};

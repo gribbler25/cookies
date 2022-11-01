@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 // import Contact from '../../assets/Contact-page.jpg';
+import { Typography } from "@mui/material";
 import Coco from '../../assets/chocolate.jpg';
 
 // import Button from '@mui/material/Button';
@@ -114,8 +115,13 @@ const OrderForm = () => {
                 <button type="submit">Submit</button>
             </form> */}
         </Box>
+        <Typography
+        align="center"
+      >
+          <img src={Coco} width="70%" height="100%" className="order-image" alt="chocolate, cookie"></img>
 
-        <img src={Coco} width="650px" height="300px" className="order-image" alt="cookie, coffee, man at desk with computer"></img>
+      </Typography>
+        {/* <img src={Coco} width="650px" height="300px" className="order-image" alt="cookie, coffee, man at desk with computer"></img> */}
 
         </div>
     )
