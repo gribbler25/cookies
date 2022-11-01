@@ -1,3 +1,5 @@
+import React, {useState} from 'react';
+import { useForm } from 'react-hook-form';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Table from '@mui/material/Table';
@@ -5,6 +7,9 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import { TextField } from '@mui/material';
+import Button from '@mui/material/Button';
 
 const style = {
     position: 'absolute',
@@ -20,6 +25,21 @@ const style = {
 
 export default function CookieModal(props) {
     const cookies = props.cookies;
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const { register, handleSubmit, reset, formState } = useForm();
+    const onSubmit = data => console.log(data);
+
+    React.useEffect(() => {
+        if (formState.isSubmitSuccessful) {
+            reset({ review: "" });
+        }
+    });
     // console.log(props);
     // console.log(cookies);
 
@@ -64,6 +84,27 @@ export default function CookieModal(props) {
                 </TableBody>
                 </Table>
                 </TableContainer>
+                <Button onClick={handleOpen}>Add Your Review</Button>
+                <Modal
+                hideBackdrop
+                open={open}
+                onClose={handleClose}
+                >
+                    <Box sx={{...style, width: 500 }}>
+                        <TextField label="Add Review Here" variant="standard" />
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div>
+                                <TextField {...register("review", { required: true})} />
+                            </div>
+                            <div>
+                                <Button type="submit">Leave Review</Button>
+                            </div>
+                        </form>
+                        <Button onClick={handleClose}>Close The Reviews</Button>
+                        
+                        {/* <ReviewForm /> */}
+                    </Box>
+                </Modal>
                 {cookies.map((cookie) => (
                     <div>
                 <button>Add To Cart</button>
