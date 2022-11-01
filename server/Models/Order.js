@@ -4,12 +4,12 @@ const cookieSchema = require("./Cookie.js");
 const orderSchema = new Schema({
   cookies: {
     type: String,
-    required: true
+    required: true,
   },
   //assigning the logged in user's _id to this property, can it be a string?
   email: {
     type: String,
-    required:true
+    required: true,
   },
 
   //this could just be how many dozen cookies.. one, two, three etc

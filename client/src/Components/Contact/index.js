@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Contact from '../../assets/Contact-page.jpg';
+import { Typography } from "@mui/material";
 
 const ContactForm = () => {
 
@@ -94,7 +95,13 @@ const ContactForm = () => {
                 <button type="submit">Submit</button>
             </form> */}
         </Box>
-        <img src={Contact} width="650px" height="300px" className="order-image" alt="chocolate"></img>
+        <Typography
+        align="center"
+      >
+          <img src={Contact} width="70%" height="100%" className="order-image" alt="coffee, cookie, laptop"></img>
+
+      </Typography>
+        {/* <img src={Contact} width="650px" height="300px" className="order-image" alt="chocolate"></img> */}
         </div>
     )
 }
