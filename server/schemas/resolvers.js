@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
-const { User, Cookie, Order } = require("../models");
+const { User, Cookie, Order, Review } = require("../models");
 const { isObjectIdOrHexString } = require("mongoose");
 
 const resolvers = {
@@ -33,6 +33,11 @@ const resolvers = {
       console.log(cookies);
       return cookies;
     },
+    getReviews: async (parent) => {
+      const reviews = await Review.find({})
+      console.log(reviews);
+      return reviews;
+    }
   },
 
   Mutation: {
