@@ -13,7 +13,7 @@ const typeDefs = gql`
   }
 
   type Cookie {
-    _id: ID,
+    _id: ID
     username: String
     cookieName: String
     description: String
