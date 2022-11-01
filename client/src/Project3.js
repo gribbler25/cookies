@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import About from './Components/About';
 import ProjectCookies from './Components/Cookies';
 import Contact from './Components/Contact';
-import {Signup, Login} from './Components/SignupLogin';
+import Signup from './Components/Signup';
+import Login from './Components/Login';
 import Order from './Components/Order';
 
 function Project() {
