@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
 
-const PhotoList = ({ category }) => {
+const PhotoList = ({ group }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState(); 
 
@@ -11,25 +11,25 @@ const PhotoList = ({ category }) => {
   const [photos] = useState([
     // category: 'commercial', 
     {
-      name: 'Chocolate Chip',
+      name: 'choco',
       category: 'Cookies',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie'
     },
     {
-      name: 'Ginger Snaps',
+      name: 'gingersnaps',
       category: 'Cookies',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie'
     },
     {
-      name: 'Oatmeal',
+      name: 'oatmeal',
       category: 'Cookies',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie'
     },
     {
-      name: 'Snicker Doodles',
+      name: 'snickerdoodle',
       category: 'Cookies',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie'
@@ -37,7 +37,7 @@ const PhotoList = ({ category }) => {
  
   ]);
 
-  const currentPhotos = photos.filter(photo => photo.category === category);
+  const currentPhotos = photos.filter(photo => photo.category === "Cookies");
 
   const toggleModal = (image, i) => {
     setCurrentPhoto({...image, index: i});
@@ -46,20 +46,23 @@ const PhotoList = ({ category }) => {
 
   return (
     <div>
-      {isModalOpen && (
-        <Modal onClose={toggleModal} currentPhoto={currentPhoto} />
-      )}
+      {console.log(currentPhotos)}
       <div className="flex-row">
-        {currentPhotos.map((image, i) => (
-          <img
-        //   src={require(`../../assets/small/${category}/${i}.jpg`)}
-            src={require(`../../assets/cookieImages/${category}/${i}.jpg`)}
-            alt={image.name}
-            className="img-thumbnail mx-1"
-            onClick={() => toggleModal(image, i)}
-            key={image.name}
+        {group.map((image, i) => {
+          console.log(image, i)
+          return(
+            <>
+            <img
+          //   src={require(`../../assets/small/${category}/${i}.jpg`)}
+          src={image.image[0]}
+          alt={image.name}
+          className="img-thumbnail mx-1"
+          onClick={() => toggleModal(image, i)}
+          key={image.name}
           />
-        ))}
+          </>
+        )}
+        )}
       </div>
     </div>
   );

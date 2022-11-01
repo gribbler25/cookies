@@ -1,15 +1,15 @@
 // photo-port uses a gallery component 
 import React from 'react';
-import PhotoList from '../PhotoList';
-import { capitalizeFirstLetter } from '../../utils/helpers';
+import PhotoList from '../Photos';
+// import { capitalizeFirstLetter } from '../../utils/helpers';
 
 function Gallery(props) {
-  const { currentCategory } = props;
+  const { currentGroup } = props;
   return (
     <section>
-      <h1 data-testid="h1tag">{capitalizeFirstLetter(currentCategory.name)}</h1>
-      <p>{currentCategory.description}</p>
-      <PhotoList category={currentCategory.name} />
+      <h1 data-testid="h1tag">hello</h1>
+      <p>It's a cookie</p>
+      <PhotoList group={currentGroup} />
     </section>
   );
 }
