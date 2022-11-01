@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import CookieModal from '../Modal';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import Gallery from '../Gallery';
 import choco from '../../assets/cookieImages/choco.jpg';
 import oatmeal from '../../assets/cookieImages/oatmeal.jpg';
 import gingersnap from '../../assets/cookieImages/gingersnap.jpg';
