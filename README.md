@@ -18,6 +18,9 @@ We created an application that sells cookies through a subscription.
 * Material UI
 * React Hook Forms
 
+## Set up:
+After cloning the repository, run npm install from the root directory to install npm packages. Then run npm run build to start up the server side and client side concurrently.
+
 ## Website:
 
 ## GitHub Repo:
