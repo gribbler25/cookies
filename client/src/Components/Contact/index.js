@@ -53,7 +53,7 @@ const ContactForm = () => {
               Contact Us
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
-              Fill up the form and our team will get back to you within 24 hours.
+              Fill out the form and our team will get back to you.
             </Typography>
             <form onSubmit={handleSubmit}>
               <Grid container spacing={1}>

@@ -20,26 +20,28 @@ const Cookie = () => {
         { id: 4, name: 'Gingersnaps', image: [gingersnap], description: 'gingersnap description', calories: 106, fat: 3, carbs: 19, protein: 1, price: 29 }
     ]);
 
+    const cookieStyle = { display: 'flex', padding: "20px",  flexDirection: "row"}
     return (
-        <div className="modal-title">
-
-            <div style={{ display: "flex" }}>
-                {cookies.map((cookie) => (
-                    <div>
-                        <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image} style={{ height: "200px", width: "200px" }}></img></Button>
-                        <p>{cookie.name}</p>
-                    </div>
-                ))}
-            </div>
-            {/* <Gallery currentGroup={cookies}/> */}
-            <Modal
-                open={!!open}
-                onClose={handleClose}
-            >
-                <div>
-                    <CookieModal cookies={cookies.filter(cookie => cookie.id == open)} />
+        <div className="modal-title" >
+            <div style={cookieStyle}>
+                <div style={{ display: "flex", width: "100%", flexWrap: "wrap", justifyContent: "center"}}>
+                    {cookies.map((cookie) => (
+                        <div>
+                            <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image} style={{ height: "200px", width: "200px" }}></img></Button>
+                            <p>{cookie.name}</p>
+                        </div>
+                    ))}
                 </div>
-            </Modal>
+                {/* <Gallery currentGroup={cookies}/> */}
+                <Modal
+                    open={!!open}
+                    onClose={handleClose}
+                >
+                    <div>
+                        <CookieModal cookies={cookies.filter(cookie => cookie.id == open)} />
+                    </div>
+                </Modal>
+            </div>
         </div>
     )
 };

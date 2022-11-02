@@ -76,7 +76,8 @@ h1 {
 
 .modal-title {
   margin-top: 12%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-image img {
