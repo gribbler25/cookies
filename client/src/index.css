@@ -89,6 +89,7 @@ h1 {
 .contact-message {
   /* margin-left: 35%; */
   text-align: center;
+  color: rgb(19, 110, 110);
 }
 
 .contact-submit, .order-submit{

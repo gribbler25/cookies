@@ -22,11 +22,12 @@ const Cookie = () => {
 
     return (
         <div className="modal-title">
-            
+            {/* added inline/center so it will work on smaller screen  */}
             <div style={{display: "flex"}}>
             {cookies.map((cookie) => (
                 <div>
-                    <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image}style={{height: "200px", width: "200px"}}></img></Button>
+                    {/* use % instead of pixels  */}
+                    <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image}style={{height: "400px", width: "400px"}}></img></Button>
                     <p>{cookie.name}</p>
                 </div>
             ))}
