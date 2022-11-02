@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
+import { textAlign } from '@mui/system';
 
 const style = {
     position: 'absolute',
@@ -25,6 +26,8 @@ const style = {
 
 export default function CookieModal(props) {
     const cookies = props.cookies;
+    
+    
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -32,12 +35,20 @@ export default function CookieModal(props) {
     const handleClose = () => {
         setOpen(false);
     };
+
     const { register, handleSubmit, reset, formState } = useForm();
     // you're getting to this point and then not using your data, because it's just being logged
     // you have a reviewForm component that is not being used. It has no information being returned
     // just perform your query or mutation from this file under the onSubmit
     //good luck!
-    const onSubmit = data => console.log(data);
+    function cookieReviews(data) {
+        // const reviews = data.review;
+        let newReview = document.createElement("ul");
+        newReview.textContent = data.review;
+        const getReviewEl = document.querySelector("#reviewEl");
+        getReviewEl.appendChild(newReview);
+        console.log(data);
+    };
 
     React.useEffect(() => {
         if (formState.isSubmitSuccessful) {
@@ -88,6 +99,13 @@ export default function CookieModal(props) {
                 </TableBody>
                 </Table>
                 </TableContainer>
+                <div>
+                {cookies.map((cookie) => (
+                    <div>
+                        <h3>Price: ${cookie.price} / dozen cookies</h3>
+                    </div>
+                ))}
+                </div>
                 <Button onClick={handleOpen}>Add Your Review</Button>
                 <Modal
                 hideBackdrop
@@ -95,8 +113,8 @@ export default function CookieModal(props) {
                 onClose={handleClose}
                 >
                     <Box sx={{...style, width: 500 }}>
-                        {/* <TextField label="Add Review Here" variant="standard" /> */}
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <TextField label="Add Review Here: " variant="standard" />
+                        <form onSubmit={handleSubmit(cookieReviews)}>
                             <div>
                                 <TextField {...register("review", { required: true})} />
                             </div>
@@ -111,8 +129,11 @@ export default function CookieModal(props) {
                 </Modal>
                 {cookies.map((cookie) => (
                     <div>
-                <h3>Price: ${cookie.price} / dozen cookies</h3>
-                </div>
+                        <div id="reviewEl">
+                            <h4>Reviews:</h4>
+                            <ul>"{cookie.reviews}"</ul>    
+                        </div>
+                    </div>
                 ))}
                 </Box>
                 </div>
