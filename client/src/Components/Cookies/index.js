@@ -27,7 +27,7 @@ const Cookie = () => {
             {cookies.map((cookie) => (
                 <div>
                     {/* use % instead of pixels  */}
-                    <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image}style={{height: "200px", width: "200px"}}></img></Button>
+                    <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image}style={{height: "400px", width: "400px"}}></img></Button>
                     <p>{cookie.name}</p>
                 </div>
             ))}
