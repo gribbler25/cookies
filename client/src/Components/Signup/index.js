@@ -34,12 +34,13 @@ const Signup = () => {
         }
     };
 
-    const paperStyle = { padding: 20, height: '70vh', width: 280, margin: "20px auto" }
+    const containerStyle = {display: 'flex', marginTop: '10%'}
+    const paperStyle = { padding: 20, height: '50vh', width: 280, margin: "20px auto" }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
     const btnstyle = { margin: '8px 0' }
 
     return (
-        <Grid>
+        <div style={containerStyle}>
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
                     <Avatar style={avatarStyle}><LockOpenOutlinedIcon /></Avatar>
@@ -53,7 +54,7 @@ const Signup = () => {
                 </form>
                 {error ? <div>Sign up failed</div> : null}
             </Paper>
-        </Grid>
+        </div>
     );
 };
 
