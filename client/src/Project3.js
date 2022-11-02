@@ -64,7 +64,7 @@ function Project() {
                     {Auth.loggedIn() ? (
                         <>
 
-                            <Button color="inherit" href="/" onClick={logout}>
+                            <Button color="inherit" href="#about" onClick={logout}>
                                 Logout
                             </Button>
                         </>
