@@ -16,10 +16,13 @@ import Coco from "../../assets/chocolate.jpg";
 
 const OrderForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
+
   const [formState, setFormState] = useState({
     cookies: "",
     total: "",
   });
+  const [orderCreated, setOrderCreated] = useState(false);
+
   const [createOrder, { error }] = useMutation(CREATE_ORDER);
 
   const { cookies, total } = formState;
@@ -50,12 +53,15 @@ const OrderForm = () => {
       const { data } = await createOrder({
         variables: { ...formState },
       });
+      console.log(data.cookies);
+      console.log(data.total);
+      console.log(data.email);
     } catch (e) {
       console.error(e);
     }
-    console.log(data.cookies);
-    console.log(data.total);
-    console.log(data.email);
+
+    setOrderCreated(true);
+    console.log(orderCreated);
   };
 
   return (
@@ -106,6 +112,14 @@ const OrderForm = () => {
             <Button type="submit">Place an Order</Button>
           </div>
         </form>
+
+        {orderCreated && (
+          <div className="order-confirm">
+            <h2>
+              Your order of {total} {cookies} cookies is processing!
+            </h2>
+          </div>
+        )}
       </Box>
       <Typography align="center">
         <img
