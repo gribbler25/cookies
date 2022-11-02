@@ -24,7 +24,7 @@ const Cookie = () => {
     return (
         <div className="modal-title" >
             <div style={cookieStyle}>
-                <div style={{ display: "flex", width: "100%", flexWrap: "wrap", justifyContent: "center"}}>
+                <div style={{ display: "flex", width: "100%", flexWrap: "wrap", justifyContent: "center", textAlign: "center"}}>
                     {cookies.map((cookie) => (
                         <div>
                             <Button key={cookie.id} ><img data-id={cookie.id} onClick={handleOpen} src={cookie.image} style={{ height: "300px", width: "300px" }}></img></Button>
