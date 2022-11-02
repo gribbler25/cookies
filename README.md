@@ -1,14 +1,14 @@
 # MERN Subscription
 
-## Purpose
+## Purpose:
 
 To create a MERN stack single-page application.
 
-## Description
+## Description:
 
 We created an application that sells cookies through a subscription. 
 
-## Built with
+## Built with:
 * Apollo
 * Express
 * MongoDB
@@ -18,18 +18,21 @@ We created an application that sells cookies through a subscription.
 * Material UI
 * React Hook Forms
 
-## Website
+## Website:
 
 ## GitHub Repo:
 https://github.com/Boywondr84/mern-subscription
 
 ## Screenshots:
+<img src="screenshots\AboutUs.png" />
+<img src="screenshots\ContactPage.png" />
+<img src="screenshots\CookiesWithModal.png" />
+<img src="screenshots\CookiesWithNestedModal.png" />
+<img src="screenshots\Login.png" />
+<img src="screenshots\Order.png" />
 <img src="screenshots\SignUp.png" />
 
-
-
-
-## contribution
+## Contributions:
 Made with ❤️ by Cy Howard, Camille Howe, Ryan Kahlbaugh, Sarah Nguyen, Eric Schweitzer
 
 &copy; 
