@@ -1,78 +1,100 @@
-import React, { useState } from 'react';
-import { validateEmail } from '../../utils/helpers';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import React, { useState } from "react";
+// import { validateEmail } from "../../utils/helpers";
+import { useMutation } from "@apollo/client";
+import { CREATE_ORDER } from "../../utils/mutations";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 // import Contact from '../../assets/Contact-page.jpg';
 import { Typography } from "@mui/material";
-import Coco from '../../assets/chocolate.jpg';
+import Coco from "../../assets/chocolate.jpg";
 
 // import Button from '@mui/material/Button';
 // import { FormControl, RadioGroup } from '@mui/material';
 // import FormLabel from '@mui/material';
 // import FormControlLabel from '@mui/material';
 
-
 const OrderForm = () => {
+  const [errorMessage, setErrorMessage] = useState("");
 
-    const [errorMessage, setErrorMessage] = useState('');
-    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-    const { name, email, message } = formState;
-    function handleChange(e) {
-        if (e.target.name === 'email') {
-            const isValid = validateEmail(e.target.value);
-            console.log(isValid);
-            if (!isValid) {
-                setErrorMessage('');
-            } else {
-                if (!e.target.value.length) {
-                    setErrorMessage(`${e.target.name} is required`);
-                } else {
-                    setErrorMessage('');
-                }
-                // console.log('errorMessage', errorMessage);
-            }
-        }
-        if (!errorMessage) {
-            setFormState({ ...formState, [e.target.name]: e.target.value });
-        }
+  const [formState, setFormState] = useState({
+    cookies: "",
+    total: "",
+  });
+  const [orderCreated, setOrderCreated] = useState(false);
+
+  const [createOrder, { error }] = useMutation(CREATE_ORDER);
+
+  const { cookies, total } = formState;
+
+  function handleChange(e) {
+    // if (e.target.name === "email") {
+    //   const isValid = validateEmail(e.target.value);
+    //   console.log(isValid);
+    //   if (!isValid) {
+    //     setErrorMessage("");
+    //   } else {
+    if (!e.target.value.length) {
+      setErrorMessage(`${e.target.name} is required`);
+    } else {
+      setErrorMessage("");
     }
-    // console.log(formState);
+    // console.log('errorMessage', errorMessage);
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log(formState);
+    if (!errorMessage) {
+      setFormState({ ...formState, [e.target.name]: e.target.value });
+      console.log(formState);
+    }
+  }
+
+  const handleOrderSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await createOrder({
+        variables: { ...formState },
+      });
+      console.log(data.cookies);
+      console.log(data.total);
+      console.log(data.email);
+    } catch (e) {
+      console.error(e);
     }
 
-    return (
-        <div>
-        <Box
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-        >
-            <div className="order-form">
+    setOrderCreated(true);
+    console.log(orderCreated);
+  };
 
-                <TextField
-                    required
-                    id="outlined-required"
-                    label="Required"
+  return (
+    <div>
+      <Box
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+      >
+        <form id="order-form" onSubmit={handleOrderSubmit}>
+          <div className="order-form">
+            <TextField
+              required
+              id="outlined-required"
+              name="cookies"
+              label="Cookie Name Required"
+              defaultValue="Chocolate Chip"
+              onChange={handleChange}
+            />
 
-                    defaultValue="Cookies"
-                />
+            <TextField
+              required
+              id="outlined-required"
+              name="total"
+              label="Quantity Required"
+              defaultValue="2 dozen"
+              onChange={handleChange}
+            />
+          </div>
 
-                <TextField
-                    required
-                    id="outlined-required"
-                    label="Required"
+          {/* use select from mui it looks like a drop down at bottom of file*/}
 
-                    defaultValue="Quantity"
-                />
-            </div>
-
-              {/* use select from mui it looks like a drop down at bottom of file*/}
-
-            {/* <FormControl>
+          {/* <FormControl>
 
             <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
             <RadioGroup
@@ -86,51 +108,36 @@ const OrderForm = () => {
             </RadioGroup>
             </FormControl> */}
 
+          <div className="order-submit">
+            <Button type="submit">Place an Order</Button>
+          </div>
+        </form>
 
-
-            <div className="order-submit">
-            <Button onClick="submit">Place an Order</Button>
-
-            </div>
-            {/* <h1 data-testid="h1tag">Contact Us</h1>
-            <form id="contact-form" className="contact-form"onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" defaultValue={name} onBlur={handleChange} name="name" />
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" defaultValue={email} onBlur={handleChange} name="email" />
-                </div>
-                <div>
-                    <label htmlFor="message">Message:</label>
-                    <textarea name="message" defaultValue={message} onBlur={handleChange} rows="5" />
-                {/* </div> */}
-            {/* {errorMessage && (
-                    <div>
-                        <p className="error-text">{errorMessage}</p>
-                    </div>
-                )}
-                </div>
-                <button type="submit">Submit</button>
-            </form> */}
-        </Box>
-        <Typography
-        align="center"
-      >
-          <img src={Coco} width="70%" height="100%" className="order-image" alt="chocolate, cookie"></img>
-
+        {orderCreated && (
+          <div className="order-confirm">
+            <h2>
+              Your order of {total} {cookies} cookies is processing!
+            </h2>
+          </div>
+        )}
+      </Box>
+      <Typography align="center">
+        <img
+          src={Coco}
+          width="70%"
+          height="100%"
+          className="order-image"
+          alt="chocolate, cookie"
+        ></img>
       </Typography>
-        {/* <img src={Coco} width="650px" height="300px" className="order-image" alt="cookie, coffee, man at desk with computer"></img> */}
-
-        </div>
-    )
-}
-
+      {/* <img src={Coco} width="650px" height="300px" className="order-image" alt="cookie, coffee, man at desk with computer"></img> */}
+    </div>
+  );
+};
 
 export default OrderForm;
 
-// select from mui is like a dropdown https://mui.com/material-ui/react-select/ 
+// select from mui is like a dropdown https://mui.com/material-ui/react-select/
 
 // import * as React from 'react';
 // import Box from '@mui/material/Box';
@@ -165,4 +172,3 @@ export default OrderForm;
 //     </Box>
 //   );
 // }
-
