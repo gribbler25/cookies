@@ -24,7 +24,7 @@ We created an application that sells cookies through a subscription.
 https://github.com/Boywondr84/mern-subscription
 
 ## Screenshots:
-<img src="mern-subscription\SignUp.png" />
+<img src="screenshots\SignUp.png" />
 
 
 
