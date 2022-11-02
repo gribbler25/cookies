@@ -15,14 +15,17 @@ We created an application that sells cookies through a subscription.
 * Node
 * jsonwebtoken
 * graphql
+* Material UI
+* React Hook Forms
 
 ## Website
 
 ## GitHub Repo:
-<a href="https://github.com/Boywondr84/mern-subscription" />
+https://github.com/Boywondr84/mern-subscription
 
 ## Screenshots:
-<img src="./AboutUs.png />
+<img src="mern-subscription\AboutUs.png" />
+
 
 
 ## contribution
