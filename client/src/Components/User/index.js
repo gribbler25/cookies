@@ -1,24 +1,24 @@
-import { Typography } from "@mui/material";
-import React from "react";
-import { useForm } from 'react-hook-form'; 
+// import { Typography } from "@mui/material";
+// import React from "react";
+// import { useForm } from 'react-hook-form'; 
 // import yum from '../../assets/yum.jpg';
-import bake from '../../assets/bake.jpg'; 
-import Button from '@mui/material/Button';
+// import bake from '../../assets/bake.jpg'; 
+// import Button from '@mui/material/Button';
 
-function Login() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+// function Login() {
+//   const { register, handleSubmit, formState: { errors } } = useForm();
+//   const onSubmit = data => console.log(data);
 
-  return (
-    <div>
+//   return (
+//     <div>
 
-      <Typography class="login-title" mt={20} align="left" variant="h2">
-        Login...
-      </Typography>
+//       <Typography class="login-title" mt={20} align="left" variant="h2">
+//         Login...
+//       </Typography>
 
       {/* React-hook-form here */}
       
-      <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+      {/* <form onSubmit={handleSubmit(onSubmit)} className="login-form">
         <div class="user-login">
           <label htmlFor="username">Username  </label>
           <input {...register("username")} placeholder="Username" />
@@ -26,10 +26,10 @@ function Login() {
         <div class="password-login">
           <label htmlFor="password">Password  </label>
           <input {...register("password")} type="password" placeholder="Password" />
-        </div>
+        </div> */}
         {/* <input type="submit" className="login-submit" /> */}
-        <Button onClick="submit">LOGIN</Button>
-      </form>
+        {/* <Button onClick="submit">LOGIN</Button>
+      </form> */}
       {/* <form class="login-form">
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
           <div>
@@ -54,13 +54,13 @@ function Login() {
         </div>
       </form> */}
       {/* adding a class(typography) makes the font smaller  */}
-      <Typography class="signup-title" mt={5} align="left" variant="h2">
+      {/* <Typography class="signup-title" mt={5} align="left" variant="h2">
         Signup...
-      </Typography>
+      </Typography> */}
 
       {/* React-hook-form here */}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="signup-form">
+      {/* <form onSubmit={handleSubmit(onSubmit)} className="signup-form">
         <div class="signup-username">
           <label htmlFor="username">Username  </label>
           <input {...register("username", { required: true })} placeholder="Username" />
@@ -78,10 +78,10 @@ function Login() {
         <div>
           {Object.keys(errors).length > 0 &&
             "There are errors."}
-        </div>
+        </div> */}
         {/* <input type="submit" className="signup-submit" /> */}
-               <Button onClick="submit">SIGNUP</Button>
-      </form>
+               {/* <Button onClick="submit">SIGNUP</Button>
+      </form> */}
 
       {/* <form class="signup-form"> */}
 
@@ -114,7 +114,7 @@ function Login() {
         </div>
       </form> */}
 
-      <Typography
+      {/* <Typography
         align="center"
       >
         <img src={bake} width="70%" height="50%" alt="baking cookies"></img>
@@ -123,4 +123,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Login; */}
