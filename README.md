@@ -18,6 +18,12 @@ We created an application that sells cookies through a subscription.
 
 ## Website
 
+## GitHub Repo:
+<a href="https://github.com/Boywondr84/mern-subscription" />
+
+## Screenshots:
+<img src="./AboutUs.png />
+
 
 ## contribution
 Made with ❤️ by Cy Howard, Camille Howe, Ryan Kahlbaugh, Sarah Nguyen, Eric Schweitzer
