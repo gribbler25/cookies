@@ -26,7 +26,7 @@ const Cookie = () => {
 
     return (
         <div className="modal-title">
-            
+            {/* added inline/center so it will work on smaller screen  */}
             <div style={{display: "flex"}}>
             {cookies.map((cookie) => (
                 <div>
