@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Boywondr84/mern-subscription#readme",
   "devDependencies": {
     "concurrently": "^7.5.0"
+  },
+  "dependencies": {
+    "enoent": "^1.0.0"
   }
 }

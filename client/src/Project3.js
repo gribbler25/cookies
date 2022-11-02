@@ -13,29 +13,31 @@ import Auth from './utils/auth';
 import { Link } from 'react-router-dom';
 
 function Project() {
-    const [currentPage, setCurrentPage] = useState('About');
+    const initialPage = window.location.hash || '#about'
+    const [currentPage, setCurrentPage] = useState(initialPage);
+
     const logout = event => {
         event.preventDefault();
         Auth.logout();
     };
 
     const renderPage = () => {
-        if (currentPage === 'About') {
+        if (currentPage === '#about') {
             return <About />;
         }
-        if (currentPage === 'Cookies') {
+        if (currentPage === '#cookies') {
             return <ProjectCookies />;
         }
-        if (currentPage === 'Contact') {
+        if (currentPage === '#contact') {
             return <Contact />;
         }
-        if (currentPage === 'Signup') {
+        if (currentPage === '#signup') {
             return <Signup />;
         }
-        if (currentPage === 'Login'){
+        if (currentPage === '#login') {
             return <Login />;
         }
-        if (currentPage === 'Order') {
+        if (currentPage === '#order') {
             return <Order />;
         }
     }
@@ -46,42 +48,42 @@ function Project() {
         <div>
             <AppBar>
                 <Toolbar
-                className="toolbar">
+                    className="toolbar">
                     <Button color="inherit"
-                        href="#about" onClick={() => handlePageChange('About')}
-                        className={currentPage === 'About' ? 'nav-link active' : 'nav-link'}>About Us
+                        href="#about" onClick={() => handlePageChange('#about')}
+                        className={currentPage === '#about' ? 'nav-link active' : 'nav-link'}>About Us
                     </Button>
-                    <Button color="inherit" 
-                        href="#cookies" onClick={() => handlePageChange('Cookies')}
-                        className={currentPage === 'Cookies' ? 'nav-link active' : 'nav-link'}>Cookies
+                    <Button color="inherit"
+                        href="#cookies" onClick={() => handlePageChange('#cookies')}
+                        className={currentPage === '#cookies' ? 'nav-link active' : 'nav-link'}>Cookies
                     </Button>
-                    <Button color="inherit" 
-                        href="#contact" onClick={() => handlePageChange('Contact')}
-                        className={currentPage === 'Contact' ? 'nav-link active' : 'nav-link'}>Contact
+                    <Button color="inherit"
+                        href="#contact" onClick={() => handlePageChange('#contact')}
+                        className={currentPage === '#contact' ? 'nav-link active' : 'nav-link'}>Contact
                     </Button>
                     {Auth.loggedIn() ? (
-                    <>
-      
-                     <Button color="inherit" href="/" onClick={logout}>
-                          Logout
-                        </Button>
-                            </>
-                    ) : (
-                            <>
-                    <Button color="inherit" 
-                        href="#signup" onClick={() => handlePageChange('Signup')}
-                        className={currentPage === 'Signup' ? 'nav-link active' : 'nav-link'}>Signup
-                    </Button>
-                    <Button color="inherit" 
-                        href="#login" onClick={() => handlePageChange('Login')}
-                        className={currentPage === 'Login' ? 'nav-link active' : 'nav-link'}>Login
-                    </Button>
-                    </>
-                        )}
+                        <>
 
-                    <Button color="inherit" 
-                        href="#user" onClick={() => handlePageChange('Order')}
-                        className={currentPage === 'Order' ? 'nav-link active' : 'nav-link'}>Place Order
+                            <Button color="inherit" href="/" onClick={logout}>
+                                Logout
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button color="inherit"
+                                href="#signup" onClick={() => handlePageChange('#signup')}
+                                className={currentPage === '#signup' ? 'nav-link active' : 'nav-link'}>Signup
+                            </Button>
+                            <Button color="inherit"
+                                href="#login" onClick={() => handlePageChange('#login')}
+                                className={currentPage === '#login' ? 'nav-link active' : 'nav-link'}>Login
+                            </Button>
+                        </>
+                    )}
+
+                    <Button color="inherit"
+                        href="#order" onClick={() => handlePageChange('#order')}
+                        className={currentPage === '#order' ? 'nav-link active' : 'nav-link'}>Place Order
                     </Button>
                 </Toolbar>
             </AppBar>
