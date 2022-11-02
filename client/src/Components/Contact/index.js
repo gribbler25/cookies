@@ -48,15 +48,13 @@ const ContactForm = () => {
                 <TextField
                     required
                     id="outlined-required"
-                    label="Required"
-                    defaultValue="Name"
+                    label="Name"
                 />
 
                 <TextField
                     required
                     id="outlined-required"
-                    label="Required"
-                    defaultValue="E-mail"
+                    label="E-mail"
                 />
             </div>
 
