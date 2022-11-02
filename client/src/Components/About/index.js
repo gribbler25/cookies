@@ -8,7 +8,7 @@ function About() {
         <div className="wrapper">
             <div className="row">
                 <div className="about">
-                    <div class="hero">
+                    <div className="hero">
                         <Typography mr={3}>
                             Quick Cookies started out as a simple coding project but has rapidly grown into a multi-million dollar online business.<br></br><br></br>
                             With award winning, fresh cookies delivered to your door, there's no reason not to join the club!<br></br><br></br>
