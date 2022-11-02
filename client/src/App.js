@@ -27,7 +27,7 @@ const App= () => (
     <ApolloProvider client={client}>
     <Project3 />
     </ApolloProvider>
-    </div>
+  </div>
 )
 
 
