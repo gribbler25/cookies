@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { validateEmail } from "../../utils/helpers";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Contact from "../../assets/Contact-page.jpg";
-import { Typography } from "@mui/material";
+import { Grid, TextField, Button, Card, CardContent, Typography } from '@material-ui/core';
 
 const ContactForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -44,67 +40,40 @@ const ContactForm = () => {
     // e.preventDefault();
     window.location = `mailto:gribbler25@gmail.com?subject=message from ${formState.name}&body=${formState.message}`;
   };
-
+  const contactStyle = {padding: "20px" }
   return (
-    <div>
-      <Box
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-      >
-        {/* <div className="contact-form"> */}
-        <form id="contact-form" onSubmit={handleSubmit}>
-          <TextField
-            required
-            id="outlined-required"
-            label="Name Required"
-            name="name"
-            defaultValue={name}
-            onBlur={handleChange}
-          />
-
-          <TextField
-            required
-            id="outlined-required"
-            name="email"
-            label="Email Required"
-            defaultValue={email}
-            onBlur={handleChange}
-          />
-          {/* </div> */}
-
-          {/* <div className="contact-message"> */}
-          <TextField
-            required
-            name="message"
-            id="outlined-multiline-static"
-            label="Message Required"
-            defaultValue={message}
-            multiline
-            rows={4}
-            onBlur={handleChange}
-          />
-          {/* </div> */}
-          {errorMessage && (
-            <div>
-              <p className="error-text">{errorMessage}</p>
-            </div>
-          )}
-          <div className="contact-submit">
-            <Button type="submit">Leave A Message!</Button>
-          </div>
-        </form>
-      </Box>
-      <Typography align="center">
-        <img
-          src={Contact}
-          width="70%"
-          height="100%"
-          className="order-image"
-          alt="coffee, cookie, laptop"
-        ></img>
-      </Typography>
-      {/* <img src={Contact} width="650px" height="300px" className="order-image" alt="chocolate"></img> */}
+    <div style={contactStyle}> 
+      <Typography gutterBottom variant="h3" align="center">
+        Quick Cookies
+       </Typography>
+      <Grid>
+        <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
+          <CardContent>
+            <Typography gutterBottom variant="h5">
+              Contact Us
+          </Typography> 
+            <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
+              Fill up the form and our team will get back to you within 24 hours.
+          </Typography> 
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <TextField placeholder="Enter name" label="Name" variant="outlined" name="name" defaultValue={name} onBlur={handleChange} fullWidth required />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField type="email" placeholder="Enter email" label="Email" variant="outlined" name="email" defaultValue={email} onBlur={handleChange} fullWidth required />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField label="Message" multiline rows={4} placeholder="Type your message here" variant="outlined" name="message"  defaultValue={message} onBlur={handleChange} fullWidth required />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button type="submit" variant="contained" color="primary" fullWidth>Submit</Button>
+                </Grid>
+              </Grid>
+            </form>
+          </CardContent>
+        </Card>
+      </Grid>
     </div>
   );
 };
