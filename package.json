@@ -15,8 +15,8 @@
     "concurrently": "5.1.0"
   },
   "dependencies": {
-    "enoent": "^1.0.0",
-    "gh-pages": "^4.0.0"
+    "enoent": "^1.0.0"
+    
   },
   "homepage": "https://github.com/Boywondr84/mern-subscription"
 }
