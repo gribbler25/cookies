@@ -50,14 +50,14 @@ const ContactForm = () => {
   const contactStyle = { padding: "20px" };
   return (
     <div style={contactStyle}>
-      <Typography gutterBottom variant="h3" align="center">
+      {/* <Typography gutterBottom variant="h3" align="center">
         Quick Cookies
-      </Typography>
+      </Typography> */}
       <Grid>
         <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
             <Typography gutterBottom variant="h5">
-              Contact Us
+              Contact Us at Quick Cookies!
             </Typography>
             <Typography
               variant="body2"

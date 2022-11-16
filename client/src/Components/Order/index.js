@@ -92,22 +92,6 @@ const OrderForm = () => {
             />
           </div>
 
-          {/* use select from mui it looks like a drop down at bottom of file*/}
-
-          {/* <FormControl>
-
-            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-            <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
-                name="radio-buttons-group"
-            >
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                <FormControlLabel value="other" control={<Radio />} label="Other" />
-            </RadioGroup>
-            </FormControl> */}
-
           <div className="order-submit">
             <Button type="submit">Place an Order</Button>
           </div>
